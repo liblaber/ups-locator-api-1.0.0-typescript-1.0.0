@@ -1,0 +1,24 @@
+{
+  "name": "ups_locator",
+  "version": "1.0.0",
+  "description": "Search for UPS shipping locations based on type and available services. In order to obtain your bearer token please follow the instructions at https://developer.ups.com/get-started, or use the UPS Authorization API. ",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [
+    "typescript",
+    "sdk",
+    "api",
+    "client"
+  ],
+  "author": "",
+  "license": "",
+  "devDependencies": {
+    "typescript": "5.3.3"
+  },
+  "dependencies": {
+    "zod": "3.22.0"
+  }
+}
