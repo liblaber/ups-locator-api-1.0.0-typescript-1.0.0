@@ -5,8 +5,10 @@ import { z } from 'zod';
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const serviceSearchServiceCode = z.object({
-  code: z.string().min(2).max(2),
+export const serviceSearchServiceCode: any = z.lazy(() => {
+  return z.object({
+    code: z.string().min(2).max(2),
+  });
 });
 
 /**
@@ -28,18 +30,22 @@ export type ServiceSearchServiceCode = z.infer<typeof serviceSearchServiceCode>;
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const serviceSearchServiceCodeResponse = z
-  .object({
-    Code: z.string().min(2).max(2),
-  })
-  .transform((data) => ({
-    code: data['Code'],
-  }));
+export const serviceSearchServiceCodeResponse: any = z.lazy(() => {
+  return z
+    .object({
+      Code: z.string().min(2).max(2),
+    })
+    .transform((data) => ({
+      code: data['Code'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const serviceSearchServiceCodeRequest = z.object({ code: z.string().nullish() }).transform((data) => ({
-  Code: data['code'],
-}));
+export const serviceSearchServiceCodeRequest: any = z.lazy(() => {
+  return z.object({ code: z.string().nullish() }).transform((data) => ({
+    Code: data['code'],
+  }));
+});

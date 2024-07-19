@@ -10,8 +10,10 @@ import {
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const excludeFromResultPostalCodeList = z.object({
-  postalCode: z.array(postalCodeListPostalCode),
+export const excludeFromResultPostalCodeList: any = z.lazy(() => {
+  return z.object({
+    postalCode: z.array(postalCodeListPostalCode),
+  });
 });
 
 /**
@@ -25,20 +27,22 @@ export type ExcludeFromResultPostalCodeList = z.infer<typeof excludeFromResultPo
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const excludeFromResultPostalCodeListResponse = z
-  .object({
-    PostalCode: z.array(postalCodeListPostalCodeResponse),
-  })
-  .transform((data) => ({
-    postalCode: data['PostalCode'],
-  }));
+export const excludeFromResultPostalCodeListResponse: any = z.lazy(() => {
+  return z
+    .object({
+      PostalCode: z.array(postalCodeListPostalCodeResponse),
+    })
+    .transform((data) => ({
+      postalCode: data['PostalCode'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const excludeFromResultPostalCodeListRequest = z
-  .object({ postalCode: z.array(postalCodeListPostalCodeRequest).nullish() })
-  .transform((data) => ({
+export const excludeFromResultPostalCodeListRequest: any = z.lazy(() => {
+  return z.object({ postalCode: z.array(postalCodeListPostalCodeRequest).nullish() }).transform((data) => ({
     PostalCode: data['postalCode'],
   }));
+});

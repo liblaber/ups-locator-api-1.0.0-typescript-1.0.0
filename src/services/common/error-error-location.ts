@@ -5,9 +5,11 @@ import { z } from 'zod';
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const errorErrorLocation = z.object({
-  errorLocationElementName: z.string().min(1).max(512).optional(),
-  errorLocationAttributeName: z.string().min(1).max(50).optional(),
+export const errorErrorLocation: any = z.lazy(() => {
+  return z.object({
+    errorLocationElementName: z.string().min(1).max(512).optional(),
+    errorLocationAttributeName: z.string().min(1).max(50).optional(),
+  });
 });
 
 /**
@@ -22,23 +24,27 @@ export type ErrorErrorLocation = z.infer<typeof errorErrorLocation>;
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const errorErrorLocationResponse = z
-  .object({
-    ErrorLocationElementName: z.string().min(1).max(512).optional(),
-    ErrorLocationAttributeName: z.string().min(1).max(50).optional(),
-  })
-  .transform((data) => ({
-    errorLocationElementName: data['ErrorLocationElementName'],
-    errorLocationAttributeName: data['ErrorLocationAttributeName'],
-  }));
+export const errorErrorLocationResponse: any = z.lazy(() => {
+  return z
+    .object({
+      ErrorLocationElementName: z.string().min(1).max(512).optional(),
+      ErrorLocationAttributeName: z.string().min(1).max(50).optional(),
+    })
+    .transform((data) => ({
+      errorLocationElementName: data['ErrorLocationElementName'],
+      errorLocationAttributeName: data['ErrorLocationAttributeName'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const errorErrorLocationRequest = z
-  .object({ errorLocationElementName: z.string().nullish(), errorLocationAttributeName: z.string().nullish() })
-  .transform((data) => ({
-    ErrorLocationElementName: data['errorLocationElementName'],
-    ErrorLocationAttributeName: data['errorLocationAttributeName'],
-  }));
+export const errorErrorLocationRequest: any = z.lazy(() => {
+  return z
+    .object({ errorLocationElementName: z.string().nullish(), errorLocationAttributeName: z.string().nullish() })
+    .transform((data) => ({
+      ErrorLocationElementName: data['errorLocationElementName'],
+      ErrorLocationAttributeName: data['errorLocationAttributeName'],
+    }));
+});

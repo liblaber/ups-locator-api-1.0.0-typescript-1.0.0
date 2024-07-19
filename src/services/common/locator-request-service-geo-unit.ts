@@ -5,9 +5,11 @@ import { z } from 'zod';
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const locatorRequestServiceGeoUnit = z.object({
-  serviceCode: z.string().min(3).max(3),
-  geoPoliticalUnit: z.string().min(3).max(3),
+export const locatorRequestServiceGeoUnit: any = z.lazy(() => {
+  return z.object({
+    serviceCode: z.string().min(3).max(3),
+    geoPoliticalUnit: z.string().min(3).max(3),
+  });
 });
 
 /**
@@ -24,23 +26,25 @@ export type LocatorRequestServiceGeoUnit = z.infer<typeof locatorRequestServiceG
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const locatorRequestServiceGeoUnitResponse = z
-  .object({
-    ServiceCode: z.string().min(3).max(3),
-    GeoPoliticalUnit: z.string().min(3).max(3),
-  })
-  .transform((data) => ({
-    serviceCode: data['ServiceCode'],
-    geoPoliticalUnit: data['GeoPoliticalUnit'],
-  }));
+export const locatorRequestServiceGeoUnitResponse: any = z.lazy(() => {
+  return z
+    .object({
+      ServiceCode: z.string().min(3).max(3),
+      GeoPoliticalUnit: z.string().min(3).max(3),
+    })
+    .transform((data) => ({
+      serviceCode: data['ServiceCode'],
+      geoPoliticalUnit: data['GeoPoliticalUnit'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const locatorRequestServiceGeoUnitRequest = z
-  .object({ serviceCode: z.string().nullish(), geoPoliticalUnit: z.string().nullish() })
-  .transform((data) => ({
+export const locatorRequestServiceGeoUnitRequest: any = z.lazy(() => {
+  return z.object({ serviceCode: z.string().nullish(), geoPoliticalUnit: z.string().nullish() }).transform((data) => ({
     ServiceCode: data['serviceCode'],
     GeoPoliticalUnit: data['geoPoliticalUnit'],
   }));
+});

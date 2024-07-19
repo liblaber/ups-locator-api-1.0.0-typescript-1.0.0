@@ -10,9 +10,11 @@ import {
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const dropLocationDistance = z.object({
-  value: z.string().min(1).max(4),
-  unitOfMeasurement: distanceUnitOfMeasurement,
+export const dropLocationDistance: any = z.lazy(() => {
+  return z.object({
+    value: z.string().min(1).max(4),
+    unitOfMeasurement: distanceUnitOfMeasurement,
+  });
 });
 
 /**
@@ -27,23 +29,27 @@ export type DropLocationDistance = z.infer<typeof dropLocationDistance>;
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const dropLocationDistanceResponse = z
-  .object({
-    Value: z.string().min(1).max(4),
-    UnitOfMeasurement: distanceUnitOfMeasurementResponse,
-  })
-  .transform((data) => ({
-    value: data['Value'],
-    unitOfMeasurement: data['UnitOfMeasurement'],
-  }));
+export const dropLocationDistanceResponse: any = z.lazy(() => {
+  return z
+    .object({
+      Value: z.string().min(1).max(4),
+      UnitOfMeasurement: distanceUnitOfMeasurementResponse,
+    })
+    .transform((data) => ({
+      value: data['Value'],
+      unitOfMeasurement: data['UnitOfMeasurement'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const dropLocationDistanceRequest = z
-  .object({ value: z.string().nullish(), unitOfMeasurement: distanceUnitOfMeasurementRequest.nullish() })
-  .transform((data) => ({
-    Value: data['value'],
-    UnitOfMeasurement: data['unitOfMeasurement'],
-  }));
+export const dropLocationDistanceRequest: any = z.lazy(() => {
+  return z
+    .object({ value: z.string().nullish(), unitOfMeasurement: distanceUnitOfMeasurementRequest.nullish() })
+    .transform((data) => ({
+      Value: data['value'],
+      UnitOfMeasurement: data['unitOfMeasurement'],
+    }));
+});

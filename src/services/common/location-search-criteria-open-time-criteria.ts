@@ -5,10 +5,12 @@ import { z } from 'zod';
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const locationSearchCriteriaOpenTimeCriteria = z.object({
-  dayOfWeekCode: z.string().min(1).max(1).optional(),
-  fromTime: z.string().min(4).max(4).optional(),
-  toTime: z.string().min(4).max(4).optional(),
+export const locationSearchCriteriaOpenTimeCriteria: any = z.lazy(() => {
+  return z.object({
+    dayOfWeekCode: z.string().min(1).max(1).optional(),
+    fromTime: z.string().min(4).max(4).optional(),
+    toTime: z.string().min(4).max(4).optional(),
+  });
 });
 
 /**
@@ -32,26 +34,30 @@ export type LocationSearchCriteriaOpenTimeCriteria = z.infer<typeof locationSear
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const locationSearchCriteriaOpenTimeCriteriaResponse = z
-  .object({
-    DayOfWeekCode: z.string().min(1).max(1).optional(),
-    FromTime: z.string().min(4).max(4).optional(),
-    ToTime: z.string().min(4).max(4).optional(),
-  })
-  .transform((data) => ({
-    dayOfWeekCode: data['DayOfWeekCode'],
-    fromTime: data['FromTime'],
-    toTime: data['ToTime'],
-  }));
+export const locationSearchCriteriaOpenTimeCriteriaResponse: any = z.lazy(() => {
+  return z
+    .object({
+      DayOfWeekCode: z.string().min(1).max(1).optional(),
+      FromTime: z.string().min(4).max(4).optional(),
+      ToTime: z.string().min(4).max(4).optional(),
+    })
+    .transform((data) => ({
+      dayOfWeekCode: data['DayOfWeekCode'],
+      fromTime: data['FromTime'],
+      toTime: data['ToTime'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const locationSearchCriteriaOpenTimeCriteriaRequest = z
-  .object({ dayOfWeekCode: z.string().nullish(), fromTime: z.string().nullish(), toTime: z.string().nullish() })
-  .transform((data) => ({
-    DayOfWeekCode: data['dayOfWeekCode'],
-    FromTime: data['fromTime'],
-    ToTime: data['toTime'],
-  }));
+export const locationSearchCriteriaOpenTimeCriteriaRequest: any = z.lazy(() => {
+  return z
+    .object({ dayOfWeekCode: z.string().nullish(), fromTime: z.string().nullish(), toTime: z.string().nullish() })
+    .transform((data) => ({
+      DayOfWeekCode: data['dayOfWeekCode'],
+      FromTime: data['fromTime'],
+      ToTime: data['toTime'],
+    }));
+});

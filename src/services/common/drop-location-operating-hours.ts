@@ -10,8 +10,10 @@ import {
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const dropLocationOperatingHours = z.object({
-  standardHours: z.array(operatingHoursStandardHours).optional(),
+export const dropLocationOperatingHours: any = z.lazy(() => {
+  return z.object({
+    standardHours: z.array(operatingHoursStandardHours).optional(),
+  });
 });
 
 /**
@@ -28,20 +30,22 @@ export type DropLocationOperatingHours = z.infer<typeof dropLocationOperatingHou
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const dropLocationOperatingHoursResponse = z
-  .object({
-    StandardHours: z.array(operatingHoursStandardHoursResponse).optional(),
-  })
-  .transform((data) => ({
-    standardHours: data['StandardHours'],
-  }));
+export const dropLocationOperatingHoursResponse: any = z.lazy(() => {
+  return z
+    .object({
+      StandardHours: z.array(operatingHoursStandardHoursResponse).optional(),
+    })
+    .transform((data) => ({
+      standardHours: data['StandardHours'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const dropLocationOperatingHoursRequest = z
-  .object({ standardHours: z.array(operatingHoursStandardHoursRequest).nullish() })
-  .transform((data) => ({
+export const dropLocationOperatingHoursRequest: any = z.lazy(() => {
+  return z.object({ standardHours: z.array(operatingHoursStandardHoursRequest).nullish() }).transform((data) => ({
     StandardHours: data['standardHours'],
   }));
+});

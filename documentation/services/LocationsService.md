@@ -1,6 +1,6 @@
-# \_Version_Service
+# LocationsService
 
-A list of all methods in the `_Version_Service` service. Click on the method name to view detailed information about that method.
+A list of all methods in the `LocationsService` service. Click on the method name to view detailed information about that method.
 
 | Methods             | Description                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | :------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -228,7 +228,7 @@ import { LocatorRequest, LocatorRequestWrapper, UpsLocator } from 'ups_locator';
     locatorRequest: locatorRequest,
   };
 
-  const { data } = await upsLocator._version_.locator('v2', 'labo', input, {
+  const { data } = await upsLocator.locations.locator('v2', 'labo', input, {
     locale: 'en_US',
     transId: 'transId',
     transactionSrc: 'testing',

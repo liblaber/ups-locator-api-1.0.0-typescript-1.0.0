@@ -6,13 +6,15 @@ import { errorErrorLocation, errorErrorLocationRequest, errorErrorLocationRespon
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const responseError = z.object({
-  errorSeverity: z.string().min(1).max(15),
-  errorCode: z.string().min(1).max(15),
-  errorDescription: z.string().min(1).max(50).optional(),
-  minimumRetrySeconds: z.string().min(1).max(5).optional(),
-  errorLocation: z.array(errorErrorLocation).optional(),
-  errorDigest: z.array(z.string()).optional(),
+export const responseError: any = z.lazy(() => {
+  return z.object({
+    errorSeverity: z.string().min(1).max(15),
+    errorCode: z.string().min(1).max(15),
+    errorDescription: z.string().min(1).max(50).optional(),
+    minimumRetrySeconds: z.string().min(1).max(5).optional(),
+    errorLocation: z.array(errorErrorLocation).optional(),
+    errorDigest: z.array(z.string()).optional(),
+  });
 });
 
 /**
@@ -43,42 +45,46 @@ export type ResponseError = z.infer<typeof responseError>;
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const responseErrorResponse = z
-  .object({
-    ErrorSeverity: z.string().min(1).max(15),
-    ErrorCode: z.string().min(1).max(15),
-    ErrorDescription: z.string().min(1).max(50).optional(),
-    MinimumRetrySeconds: z.string().min(1).max(5).optional(),
-    ErrorLocation: z.array(errorErrorLocationResponse).optional(),
-    ErrorDigest: z.array(z.string()).optional(),
-  })
-  .transform((data) => ({
-    errorSeverity: data['ErrorSeverity'],
-    errorCode: data['ErrorCode'],
-    errorDescription: data['ErrorDescription'],
-    minimumRetrySeconds: data['MinimumRetrySeconds'],
-    errorLocation: data['ErrorLocation'],
-    errorDigest: data['ErrorDigest'],
-  }));
+export const responseErrorResponse: any = z.lazy(() => {
+  return z
+    .object({
+      ErrorSeverity: z.string().min(1).max(15),
+      ErrorCode: z.string().min(1).max(15),
+      ErrorDescription: z.string().min(1).max(50).optional(),
+      MinimumRetrySeconds: z.string().min(1).max(5).optional(),
+      ErrorLocation: z.array(errorErrorLocationResponse).optional(),
+      ErrorDigest: z.array(z.string()).optional(),
+    })
+    .transform((data) => ({
+      errorSeverity: data['ErrorSeverity'],
+      errorCode: data['ErrorCode'],
+      errorDescription: data['ErrorDescription'],
+      minimumRetrySeconds: data['MinimumRetrySeconds'],
+      errorLocation: data['ErrorLocation'],
+      errorDigest: data['ErrorDigest'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const responseErrorRequest = z
-  .object({
-    errorSeverity: z.string().nullish(),
-    errorCode: z.string().nullish(),
-    errorDescription: z.string().nullish(),
-    minimumRetrySeconds: z.string().nullish(),
-    errorLocation: z.array(errorErrorLocationRequest).nullish(),
-    errorDigest: z.array(z.string()).nullish(),
-  })
-  .transform((data) => ({
-    ErrorSeverity: data['errorSeverity'],
-    ErrorCode: data['errorCode'],
-    ErrorDescription: data['errorDescription'],
-    MinimumRetrySeconds: data['minimumRetrySeconds'],
-    ErrorLocation: data['errorLocation'],
-    ErrorDigest: data['errorDigest'],
-  }));
+export const responseErrorRequest: any = z.lazy(() => {
+  return z
+    .object({
+      errorSeverity: z.string().nullish(),
+      errorCode: z.string().nullish(),
+      errorDescription: z.string().nullish(),
+      minimumRetrySeconds: z.string().nullish(),
+      errorLocation: z.array(errorErrorLocationRequest).nullish(),
+      errorDigest: z.array(z.string()).nullish(),
+    })
+    .transform((data) => ({
+      ErrorSeverity: data['errorSeverity'],
+      ErrorCode: data['errorCode'],
+      ErrorDescription: data['errorDescription'],
+      MinimumRetrySeconds: data['minimumRetrySeconds'],
+      ErrorLocation: data['errorLocation'],
+      ErrorDigest: data['errorDigest'],
+    }));
+});

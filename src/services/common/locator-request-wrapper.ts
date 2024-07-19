@@ -6,8 +6,10 @@ import { locatorRequest, locatorRequestRequest, locatorRequestResponse } from '.
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const locatorRequestWrapper = z.object({
-  locatorRequest: locatorRequest,
+export const locatorRequestWrapper: any = z.lazy(() => {
+  return z.object({
+    locatorRequest: locatorRequest,
+  });
 });
 
 /**
@@ -21,20 +23,22 @@ export type LocatorRequestWrapper = z.infer<typeof locatorRequestWrapper>;
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const locatorRequestWrapperResponse = z
-  .object({
-    LocatorRequest: locatorRequestResponse,
-  })
-  .transform((data) => ({
-    locatorRequest: data['LocatorRequest'],
-  }));
+export const locatorRequestWrapperResponse: any = z.lazy(() => {
+  return z
+    .object({
+      LocatorRequest: locatorRequestResponse,
+    })
+    .transform((data) => ({
+      locatorRequest: data['LocatorRequest'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const locatorRequestWrapperRequest = z
-  .object({ locatorRequest: locatorRequestRequest.nullish() })
-  .transform((data) => ({
+export const locatorRequestWrapperRequest: any = z.lazy(() => {
+  return z.object({ locatorRequest: locatorRequestRequest.nullish() }).transform((data) => ({
     LocatorRequest: data['locatorRequest'],
   }));
+});

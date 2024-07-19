@@ -15,14 +15,16 @@ import {
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const locationSearchCriteriaAccessPointSearch = z.object({
-  publicAccessPointId: z.string().min(1).max(15).optional(),
-  accessPointStatus: z.string().min(2).max(2).optional(),
-  accountNumber: z.string().min(6).max(10).optional(),
-  includeCriteria: accessPointSearchIncludeCriteria.optional(),
-  excludeFromResult: accessPointSearchExcludeFromResult.optional(),
-  exactMatchIndicator: z.string().optional(),
-  existIndicator: z.string().optional(),
+export const locationSearchCriteriaAccessPointSearch: any = z.lazy(() => {
+  return z.object({
+    publicAccessPointId: z.string().min(1).max(15).optional(),
+    accessPointStatus: z.string().min(2).max(2).optional(),
+    accountNumber: z.string().min(6).max(10).optional(),
+    includeCriteria: accessPointSearchIncludeCriteria.optional(),
+    excludeFromResult: accessPointSearchExcludeFromResult.optional(),
+    exactMatchIndicator: z.string().optional(),
+    existIndicator: z.string().optional(),
+  });
 });
 
 /**
@@ -44,46 +46,50 @@ export type LocationSearchCriteriaAccessPointSearch = z.infer<typeof locationSea
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const locationSearchCriteriaAccessPointSearchResponse = z
-  .object({
-    PublicAccessPointID: z.string().min(1).max(15).optional(),
-    AccessPointStatus: z.string().min(2).max(2).optional(),
-    AccountNumber: z.string().min(6).max(10).optional(),
-    IncludeCriteria: accessPointSearchIncludeCriteriaResponse.optional(),
-    ExcludeFromResult: accessPointSearchExcludeFromResultResponse.optional(),
-    ExactMatchIndicator: z.string().optional(),
-    ExistIndicator: z.string().optional(),
-  })
-  .transform((data) => ({
-    publicAccessPointId: data['PublicAccessPointID'],
-    accessPointStatus: data['AccessPointStatus'],
-    accountNumber: data['AccountNumber'],
-    includeCriteria: data['IncludeCriteria'],
-    excludeFromResult: data['ExcludeFromResult'],
-    exactMatchIndicator: data['ExactMatchIndicator'],
-    existIndicator: data['ExistIndicator'],
-  }));
+export const locationSearchCriteriaAccessPointSearchResponse: any = z.lazy(() => {
+  return z
+    .object({
+      PublicAccessPointID: z.string().min(1).max(15).optional(),
+      AccessPointStatus: z.string().min(2).max(2).optional(),
+      AccountNumber: z.string().min(6).max(10).optional(),
+      IncludeCriteria: accessPointSearchIncludeCriteriaResponse.optional(),
+      ExcludeFromResult: accessPointSearchExcludeFromResultResponse.optional(),
+      ExactMatchIndicator: z.string().optional(),
+      ExistIndicator: z.string().optional(),
+    })
+    .transform((data) => ({
+      publicAccessPointId: data['PublicAccessPointID'],
+      accessPointStatus: data['AccessPointStatus'],
+      accountNumber: data['AccountNumber'],
+      includeCriteria: data['IncludeCriteria'],
+      excludeFromResult: data['ExcludeFromResult'],
+      exactMatchIndicator: data['ExactMatchIndicator'],
+      existIndicator: data['ExistIndicator'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const locationSearchCriteriaAccessPointSearchRequest = z
-  .object({
-    publicAccessPointId: z.string().nullish(),
-    accessPointStatus: z.string().nullish(),
-    accountNumber: z.string().nullish(),
-    includeCriteria: accessPointSearchIncludeCriteriaRequest.nullish(),
-    excludeFromResult: accessPointSearchExcludeFromResultRequest.nullish(),
-    exactMatchIndicator: z.string().nullish(),
-    existIndicator: z.string().nullish(),
-  })
-  .transform((data) => ({
-    PublicAccessPointID: data['publicAccessPointId'],
-    AccessPointStatus: data['accessPointStatus'],
-    AccountNumber: data['accountNumber'],
-    IncludeCriteria: data['includeCriteria'],
-    ExcludeFromResult: data['excludeFromResult'],
-    ExactMatchIndicator: data['exactMatchIndicator'],
-    ExistIndicator: data['existIndicator'],
-  }));
+export const locationSearchCriteriaAccessPointSearchRequest: any = z.lazy(() => {
+  return z
+    .object({
+      publicAccessPointId: z.string().nullish(),
+      accessPointStatus: z.string().nullish(),
+      accountNumber: z.string().nullish(),
+      includeCriteria: accessPointSearchIncludeCriteriaRequest.nullish(),
+      excludeFromResult: accessPointSearchExcludeFromResultRequest.nullish(),
+      exactMatchIndicator: z.string().nullish(),
+      existIndicator: z.string().nullish(),
+    })
+    .transform((data) => ({
+      PublicAccessPointID: data['publicAccessPointId'],
+      AccessPointStatus: data['accessPointStatus'],
+      AccountNumber: data['accountNumber'],
+      IncludeCriteria: data['includeCriteria'],
+      ExcludeFromResult: data['excludeFromResult'],
+      ExactMatchIndicator: data['exactMatchIndicator'],
+      ExistIndicator: data['existIndicator'],
+    }));
+});

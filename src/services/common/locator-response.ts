@@ -20,11 +20,13 @@ import {
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const locatorResponse = z.object({
-  response: locatorResponseResponse1,
-  geocode: locatorResponseGeocode.optional(),
-  searchResults: locatorResponseSearchResults,
-  allowAllConfidenceLevels: z.string().min(4).max(5),
+export const locatorResponse: any = z.lazy(() => {
+  return z.object({
+    response: locatorResponseResponse1,
+    geocode: locatorResponseGeocode.optional(),
+    searchResults: locatorResponseSearchResults,
+    allowAllConfidenceLevels: z.string().min(4).max(5),
+  });
 });
 
 /**
@@ -42,34 +44,38 @@ export type LocatorResponse = z.infer<typeof locatorResponse>;
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const locatorResponseResponse = z
-  .object({
-    Response: locatorResponseResponse1Response,
-    Geocode: locatorResponseGeocodeResponse.optional(),
-    SearchResults: locatorResponseSearchResultsResponse,
-    AllowAllConfidenceLevels: z.string().min(4).max(5),
-  })
-  .transform((data) => ({
-    response: data['Response'],
-    geocode: data['Geocode'],
-    searchResults: data['SearchResults'],
-    allowAllConfidenceLevels: data['AllowAllConfidenceLevels'],
-  }));
+export const locatorResponseResponse: any = z.lazy(() => {
+  return z
+    .object({
+      Response: locatorResponseResponse1Response,
+      Geocode: locatorResponseGeocodeResponse.optional(),
+      SearchResults: locatorResponseSearchResultsResponse,
+      AllowAllConfidenceLevels: z.string().min(4).max(5),
+    })
+    .transform((data) => ({
+      response: data['Response'],
+      geocode: data['Geocode'],
+      searchResults: data['SearchResults'],
+      allowAllConfidenceLevels: data['AllowAllConfidenceLevels'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const locatorResponseRequest = z
-  .object({
-    response: locatorResponseResponse1Request.nullish(),
-    geocode: locatorResponseGeocodeRequest.nullish(),
-    searchResults: locatorResponseSearchResultsRequest.nullish(),
-    allowAllConfidenceLevels: z.string().nullish(),
-  })
-  .transform((data) => ({
-    Response: data['response'],
-    Geocode: data['geocode'],
-    SearchResults: data['searchResults'],
-    AllowAllConfidenceLevels: data['allowAllConfidenceLevels'],
-  }));
+export const locatorResponseRequest: any = z.lazy(() => {
+  return z
+    .object({
+      response: locatorResponseResponse1Request.nullish(),
+      geocode: locatorResponseGeocodeRequest.nullish(),
+      searchResults: locatorResponseSearchResultsRequest.nullish(),
+      allowAllConfidenceLevels: z.string().nullish(),
+    })
+    .transform((data) => ({
+      Response: data['response'],
+      Geocode: data['geocode'],
+      SearchResults: data['searchResults'],
+      AllowAllConfidenceLevels: data['allowAllConfidenceLevels'],
+    }));
+});

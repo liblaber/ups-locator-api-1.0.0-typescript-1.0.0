@@ -10,8 +10,10 @@ import {
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const availableLocationAttributesOptionCodeTransportationPickUpSchedule = z.object({
-  pickUp: z.array(availableLocationAttributesTransportationPickUpSchedulePickUp),
+export const availableLocationAttributesOptionCodeTransportationPickUpSchedule: any = z.lazy(() => {
+  return z.object({
+    pickUp: z.array(availableLocationAttributesTransportationPickUpSchedulePickUp),
+  });
 });
 
 /**
@@ -30,20 +32,24 @@ export type AvailableLocationAttributesOptionCodeTransportationPickUpSchedule = 
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const availableLocationAttributesOptionCodeTransportationPickUpScheduleResponse = z
-  .object({
-    PickUp: z.array(availableLocationAttributesTransportationPickUpSchedulePickUpResponse),
-  })
-  .transform((data) => ({
-    pickUp: data['PickUp'],
-  }));
+export const availableLocationAttributesOptionCodeTransportationPickUpScheduleResponse: any = z.lazy(() => {
+  return z
+    .object({
+      PickUp: z.array(availableLocationAttributesTransportationPickUpSchedulePickUpResponse),
+    })
+    .transform((data) => ({
+      pickUp: data['PickUp'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const availableLocationAttributesOptionCodeTransportationPickUpScheduleRequest = z
-  .object({ pickUp: z.array(availableLocationAttributesTransportationPickUpSchedulePickUpRequest).nullish() })
-  .transform((data) => ({
-    PickUp: data['pickUp'],
-  }));
+export const availableLocationAttributesOptionCodeTransportationPickUpScheduleRequest: any = z.lazy(() => {
+  return z
+    .object({ pickUp: z.array(availableLocationAttributesTransportationPickUpSchedulePickUpRequest).nullish() })
+    .transform((data) => ({
+      PickUp: data['pickUp'],
+    }));
+});

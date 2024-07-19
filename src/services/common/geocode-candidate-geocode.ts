@@ -5,9 +5,11 @@ import { z } from 'zod';
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const geocodeCandidateGeocode = z.object({
-  latitude: z.string(),
-  longitude: z.string(),
+export const geocodeCandidateGeocode: any = z.lazy(() => {
+  return z.object({
+    latitude: z.string(),
+    longitude: z.string(),
+  });
 });
 
 /**
@@ -22,23 +24,25 @@ export type GeocodeCandidateGeocode = z.infer<typeof geocodeCandidateGeocode>;
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const geocodeCandidateGeocodeResponse = z
-  .object({
-    Latitude: z.string(),
-    Longitude: z.string(),
-  })
-  .transform((data) => ({
-    latitude: data['Latitude'],
-    longitude: data['Longitude'],
-  }));
+export const geocodeCandidateGeocodeResponse: any = z.lazy(() => {
+  return z
+    .object({
+      Latitude: z.string(),
+      Longitude: z.string(),
+    })
+    .transform((data) => ({
+      latitude: data['Latitude'],
+      longitude: data['Longitude'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const geocodeCandidateGeocodeRequest = z
-  .object({ latitude: z.string().nullish(), longitude: z.string().nullish() })
-  .transform((data) => ({
+export const geocodeCandidateGeocodeRequest: any = z.lazy(() => {
+  return z.object({ latitude: z.string().nullish(), longitude: z.string().nullish() }).transform((data) => ({
     Latitude: data['latitude'],
     Longitude: data['longitude'],
   }));
+});

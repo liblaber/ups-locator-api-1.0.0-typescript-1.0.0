@@ -10,8 +10,10 @@ import {
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const dropLocationAdditionalComments = z.object({
-  commentType: z.array(additionalCommentsCommentType),
+export const dropLocationAdditionalComments: any = z.lazy(() => {
+  return z.object({
+    commentType: z.array(additionalCommentsCommentType),
+  });
 });
 
 /**
@@ -28,20 +30,22 @@ export type DropLocationAdditionalComments = z.infer<typeof dropLocationAddition
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const dropLocationAdditionalCommentsResponse = z
-  .object({
-    CommentType: z.array(additionalCommentsCommentTypeResponse),
-  })
-  .transform((data) => ({
-    commentType: data['CommentType'],
-  }));
+export const dropLocationAdditionalCommentsResponse: any = z.lazy(() => {
+  return z
+    .object({
+      CommentType: z.array(additionalCommentsCommentTypeResponse),
+    })
+    .transform((data) => ({
+      commentType: data['CommentType'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const dropLocationAdditionalCommentsRequest = z
-  .object({ commentType: z.array(additionalCommentsCommentTypeRequest).nullish() })
-  .transform((data) => ({
+export const dropLocationAdditionalCommentsRequest: any = z.lazy(() => {
+  return z.object({ commentType: z.array(additionalCommentsCommentTypeRequest).nullish() }).transform((data) => ({
     CommentType: data['commentType'],
   }));
+});

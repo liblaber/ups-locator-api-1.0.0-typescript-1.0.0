@@ -15,10 +15,12 @@ import {
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const locatorRequestOriginAddress = z.object({
-  geocode: originAddressGeocode.optional(),
-  addressKeyFormat: originAddressAddressKeyFormat,
-  maximumListSize: z.string().min(1).max(2).optional(),
+export const locatorRequestOriginAddress: any = z.lazy(() => {
+  return z.object({
+    geocode: originAddressGeocode.optional(),
+    addressKeyFormat: originAddressAddressKeyFormat,
+    maximumListSize: z.string().min(1).max(2).optional(),
+  });
 });
 
 /**
@@ -37,30 +39,34 @@ export type LocatorRequestOriginAddress = z.infer<typeof locatorRequestOriginAdd
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const locatorRequestOriginAddressResponse = z
-  .object({
-    Geocode: originAddressGeocodeResponse.optional(),
-    AddressKeyFormat: originAddressAddressKeyFormatResponse,
-    MaximumListSize: z.string().min(1).max(2).optional(),
-  })
-  .transform((data) => ({
-    geocode: data['Geocode'],
-    addressKeyFormat: data['AddressKeyFormat'],
-    maximumListSize: data['MaximumListSize'],
-  }));
+export const locatorRequestOriginAddressResponse: any = z.lazy(() => {
+  return z
+    .object({
+      Geocode: originAddressGeocodeResponse.optional(),
+      AddressKeyFormat: originAddressAddressKeyFormatResponse,
+      MaximumListSize: z.string().min(1).max(2).optional(),
+    })
+    .transform((data) => ({
+      geocode: data['Geocode'],
+      addressKeyFormat: data['AddressKeyFormat'],
+      maximumListSize: data['MaximumListSize'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const locatorRequestOriginAddressRequest = z
-  .object({
-    geocode: originAddressGeocodeRequest.nullish(),
-    addressKeyFormat: originAddressAddressKeyFormatRequest.nullish(),
-    maximumListSize: z.string().nullish(),
-  })
-  .transform((data) => ({
-    Geocode: data['geocode'],
-    AddressKeyFormat: data['addressKeyFormat'],
-    MaximumListSize: data['maximumListSize'],
-  }));
+export const locatorRequestOriginAddressRequest: any = z.lazy(() => {
+  return z
+    .object({
+      geocode: originAddressGeocodeRequest.nullish(),
+      addressKeyFormat: originAddressAddressKeyFormatRequest.nullish(),
+      maximumListSize: z.string().nullish(),
+    })
+    .transform((data) => ({
+      Geocode: data['geocode'],
+      AddressKeyFormat: data['addressKeyFormat'],
+      MaximumListSize: data['maximumListSize'],
+    }));
+});

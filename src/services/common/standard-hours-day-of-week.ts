@@ -5,14 +5,16 @@ import { z } from 'zod';
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const standardHoursDayOfWeek = z.object({
-  day: z.string().min(1).max(1),
-  openHours: z.string().min(4).max(4).optional(),
-  closeHours: z.string().min(4).max(4).optional(),
-  latestDropOffHours: z.string().min(4).max(4).optional(),
-  prepHours: z.string().min(4).max(4).optional(),
-  closedIndicator: z.string().optional(),
-  open24HoursIndicator: z.string().min(4).max(5).optional(),
+export const standardHoursDayOfWeek: any = z.lazy(() => {
+  return z.object({
+    day: z.string().min(1).max(1),
+    openHours: z.string().min(4).max(4).optional(),
+    closeHours: z.string().min(4).max(4).optional(),
+    latestDropOffHours: z.string().min(4).max(4).optional(),
+    prepHours: z.string().min(4).max(4).optional(),
+    closedIndicator: z.string().optional(),
+    open24HoursIndicator: z.string().min(4).max(5).optional(),
+  });
 });
 
 /**
@@ -40,46 +42,50 @@ export type StandardHoursDayOfWeek = z.infer<typeof standardHoursDayOfWeek>;
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const standardHoursDayOfWeekResponse = z
-  .object({
-    Day: z.string().min(1).max(1),
-    OpenHours: z.string().min(4).max(4).optional(),
-    CloseHours: z.string().min(4).max(4).optional(),
-    LatestDropOffHours: z.string().min(4).max(4).optional(),
-    PrepHours: z.string().min(4).max(4).optional(),
-    ClosedIndicator: z.string().optional(),
-    Open24HoursIndicator: z.string().min(4).max(5).optional(),
-  })
-  .transform((data) => ({
-    day: data['Day'],
-    openHours: data['OpenHours'],
-    closeHours: data['CloseHours'],
-    latestDropOffHours: data['LatestDropOffHours'],
-    prepHours: data['PrepHours'],
-    closedIndicator: data['ClosedIndicator'],
-    open24HoursIndicator: data['Open24HoursIndicator'],
-  }));
+export const standardHoursDayOfWeekResponse: any = z.lazy(() => {
+  return z
+    .object({
+      Day: z.string().min(1).max(1),
+      OpenHours: z.string().min(4).max(4).optional(),
+      CloseHours: z.string().min(4).max(4).optional(),
+      LatestDropOffHours: z.string().min(4).max(4).optional(),
+      PrepHours: z.string().min(4).max(4).optional(),
+      ClosedIndicator: z.string().optional(),
+      Open24HoursIndicator: z.string().min(4).max(5).optional(),
+    })
+    .transform((data) => ({
+      day: data['Day'],
+      openHours: data['OpenHours'],
+      closeHours: data['CloseHours'],
+      latestDropOffHours: data['LatestDropOffHours'],
+      prepHours: data['PrepHours'],
+      closedIndicator: data['ClosedIndicator'],
+      open24HoursIndicator: data['Open24HoursIndicator'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const standardHoursDayOfWeekRequest = z
-  .object({
-    day: z.string().nullish(),
-    openHours: z.string().nullish(),
-    closeHours: z.string().nullish(),
-    latestDropOffHours: z.string().nullish(),
-    prepHours: z.string().nullish(),
-    closedIndicator: z.string().nullish(),
-    open24HoursIndicator: z.string().nullish(),
-  })
-  .transform((data) => ({
-    Day: data['day'],
-    OpenHours: data['openHours'],
-    CloseHours: data['closeHours'],
-    LatestDropOffHours: data['latestDropOffHours'],
-    PrepHours: data['prepHours'],
-    ClosedIndicator: data['closedIndicator'],
-    Open24HoursIndicator: data['open24HoursIndicator'],
-  }));
+export const standardHoursDayOfWeekRequest: any = z.lazy(() => {
+  return z
+    .object({
+      day: z.string().nullish(),
+      openHours: z.string().nullish(),
+      closeHours: z.string().nullish(),
+      latestDropOffHours: z.string().nullish(),
+      prepHours: z.string().nullish(),
+      closedIndicator: z.string().nullish(),
+      open24HoursIndicator: z.string().nullish(),
+    })
+    .transform((data) => ({
+      Day: data['day'],
+      OpenHours: data['openHours'],
+      CloseHours: data['closeHours'],
+      LatestDropOffHours: data['latestDropOffHours'],
+      PrepHours: data['prepHours'],
+      ClosedIndicator: data['closedIndicator'],
+      Open24HoursIndicator: data['open24HoursIndicator'],
+    }));
+});

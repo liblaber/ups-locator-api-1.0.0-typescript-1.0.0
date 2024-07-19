@@ -197,7 +197,7 @@ import { LocatorRequest, LocatorRequestWrapper, UpsLocator } from 'ups_locator';
     locatorRequest: locatorRequest,
   };
 
-  const { data } = await upsLocator._version_.locator('v2', 'labo', input, {
+  const { data } = await upsLocator.locations.locator('v2', 'labo', input, {
     locale: 'en_US',
     transId: 'transId',
     transactionSrc: 'testing',

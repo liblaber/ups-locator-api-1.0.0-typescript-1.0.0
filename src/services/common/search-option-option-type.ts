@@ -5,8 +5,10 @@ import { z } from 'zod';
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const searchOptionOptionType = z.object({
-  code: z.string().min(2).max(2),
+export const searchOptionOptionType: any = z.lazy(() => {
+  return z.object({
+    code: z.string().min(2).max(2),
+  });
 });
 
 /**
@@ -31,18 +33,22 @@ export type SearchOptionOptionType = z.infer<typeof searchOptionOptionType>;
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const searchOptionOptionTypeResponse = z
-  .object({
-    Code: z.string().min(2).max(2),
-  })
-  .transform((data) => ({
-    code: data['Code'],
-  }));
+export const searchOptionOptionTypeResponse: any = z.lazy(() => {
+  return z
+    .object({
+      Code: z.string().min(2).max(2),
+    })
+    .transform((data) => ({
+      code: data['Code'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const searchOptionOptionTypeRequest = z.object({ code: z.string().nullish() }).transform((data) => ({
-  Code: data['code'],
-}));
+export const searchOptionOptionTypeRequest: any = z.lazy(() => {
+  return z.object({ code: z.string().nullish() }).transform((data) => ({
+    Code: data['code'],
+  }));
+});

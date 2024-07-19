@@ -5,9 +5,11 @@ import { z } from 'zod';
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const availableLocationAttributesPickUpPickUpDetails = z.object({
-  pickUpTime: z.string().min(4).max(4).optional(),
-  noPickUpIndicator: z.string(),
+export const availableLocationAttributesPickUpPickUpDetails: any = z.lazy(() => {
+  return z.object({
+    pickUpTime: z.string().min(4).max(4).optional(),
+    noPickUpIndicator: z.string(),
+  });
 });
 
 /**
@@ -27,23 +29,25 @@ export type AvailableLocationAttributesPickUpPickUpDetails = z.infer<
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const availableLocationAttributesPickUpPickUpDetailsResponse = z
-  .object({
-    PickUpTime: z.string().min(4).max(4).optional(),
-    NoPickUpIndicator: z.string(),
-  })
-  .transform((data) => ({
-    pickUpTime: data['PickUpTime'],
-    noPickUpIndicator: data['NoPickUpIndicator'],
-  }));
+export const availableLocationAttributesPickUpPickUpDetailsResponse: any = z.lazy(() => {
+  return z
+    .object({
+      PickUpTime: z.string().min(4).max(4).optional(),
+      NoPickUpIndicator: z.string(),
+    })
+    .transform((data) => ({
+      pickUpTime: data['PickUpTime'],
+      noPickUpIndicator: data['NoPickUpIndicator'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const availableLocationAttributesPickUpPickUpDetailsRequest = z
-  .object({ pickUpTime: z.string().nullish(), noPickUpIndicator: z.string().nullish() })
-  .transform((data) => ({
+export const availableLocationAttributesPickUpPickUpDetailsRequest: any = z.lazy(() => {
+  return z.object({ pickUpTime: z.string().nullish(), noPickUpIndicator: z.string().nullish() }).transform((data) => ({
     PickUpTime: data['pickUpTime'],
     NoPickUpIndicator: data['noPickUpIndicator'],
   }));
+});

@@ -40,18 +40,20 @@ import {
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const locatorRequest = z.object({
-  request: locatorRequestRequest1,
-  originAddress: locatorRequestOriginAddress,
-  translate: locatorRequestTranslate,
-  unitOfMeasurement: locatorRequestUnitOfMeasurement.optional(),
-  locationId: z.array(z.string()).optional(),
-  locationSearchCriteria: locatorRequestLocationSearchCriteria.optional(),
-  sortCriteria: locatorRequestSortCriteria.optional(),
-  allowAllConfidenceLevels: z.string().optional(),
-  searchOptionCode: z.string().min(2).max(2).optional(),
-  serviceGeoUnit: locatorRequestServiceGeoUnit.optional(),
-  freightIndicator: z.string().optional(),
+export const locatorRequest: any = z.lazy(() => {
+  return z.object({
+    request: locatorRequestRequest1,
+    originAddress: locatorRequestOriginAddress,
+    translate: locatorRequestTranslate,
+    unitOfMeasurement: locatorRequestUnitOfMeasurement.optional(),
+    locationId: z.array(z.string()).optional(),
+    locationSearchCriteria: locatorRequestLocationSearchCriteria.optional(),
+    sortCriteria: locatorRequestSortCriteria.optional(),
+    allowAllConfidenceLevels: z.string().optional(),
+    searchOptionCode: z.string().min(2).max(2).optional(),
+    serviceGeoUnit: locatorRequestServiceGeoUnit.optional(),
+    freightIndicator: z.string().optional(),
+  });
 });
 
 /**
@@ -82,62 +84,66 @@ export type LocatorRequest = z.infer<typeof locatorRequest>;
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const locatorRequestResponse = z
-  .object({
-    Request: locatorRequestRequest1Response,
-    OriginAddress: locatorRequestOriginAddressResponse,
-    Translate: locatorRequestTranslateResponse,
-    UnitOfMeasurement: locatorRequestUnitOfMeasurementResponse.optional(),
-    LocationID: z.array(z.string()).optional(),
-    LocationSearchCriteria: locatorRequestLocationSearchCriteriaResponse.optional(),
-    SortCriteria: locatorRequestSortCriteriaResponse.optional(),
-    AllowAllConfidenceLevels: z.string().optional(),
-    SearchOptionCode: z.string().min(2).max(2).optional(),
-    ServiceGeoUnit: locatorRequestServiceGeoUnitResponse.optional(),
-    FreightIndicator: z.string().optional(),
-  })
-  .transform((data) => ({
-    request: data['Request'],
-    originAddress: data['OriginAddress'],
-    translate: data['Translate'],
-    unitOfMeasurement: data['UnitOfMeasurement'],
-    locationId: data['LocationID'],
-    locationSearchCriteria: data['LocationSearchCriteria'],
-    sortCriteria: data['SortCriteria'],
-    allowAllConfidenceLevels: data['AllowAllConfidenceLevels'],
-    searchOptionCode: data['SearchOptionCode'],
-    serviceGeoUnit: data['ServiceGeoUnit'],
-    freightIndicator: data['FreightIndicator'],
-  }));
+export const locatorRequestResponse: any = z.lazy(() => {
+  return z
+    .object({
+      Request: locatorRequestRequest1Response,
+      OriginAddress: locatorRequestOriginAddressResponse,
+      Translate: locatorRequestTranslateResponse,
+      UnitOfMeasurement: locatorRequestUnitOfMeasurementResponse.optional(),
+      LocationID: z.array(z.string()).optional(),
+      LocationSearchCriteria: locatorRequestLocationSearchCriteriaResponse.optional(),
+      SortCriteria: locatorRequestSortCriteriaResponse.optional(),
+      AllowAllConfidenceLevels: z.string().optional(),
+      SearchOptionCode: z.string().min(2).max(2).optional(),
+      ServiceGeoUnit: locatorRequestServiceGeoUnitResponse.optional(),
+      FreightIndicator: z.string().optional(),
+    })
+    .transform((data) => ({
+      request: data['Request'],
+      originAddress: data['OriginAddress'],
+      translate: data['Translate'],
+      unitOfMeasurement: data['UnitOfMeasurement'],
+      locationId: data['LocationID'],
+      locationSearchCriteria: data['LocationSearchCriteria'],
+      sortCriteria: data['SortCriteria'],
+      allowAllConfidenceLevels: data['AllowAllConfidenceLevels'],
+      searchOptionCode: data['SearchOptionCode'],
+      serviceGeoUnit: data['ServiceGeoUnit'],
+      freightIndicator: data['FreightIndicator'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const locatorRequestRequest = z
-  .object({
-    request: locatorRequestRequest1Request.nullish(),
-    originAddress: locatorRequestOriginAddressRequest.nullish(),
-    translate: locatorRequestTranslateRequest.nullish(),
-    unitOfMeasurement: locatorRequestUnitOfMeasurementRequest.nullish(),
-    locationId: z.array(z.string()).nullish(),
-    locationSearchCriteria: locatorRequestLocationSearchCriteriaRequest.nullish(),
-    sortCriteria: locatorRequestSortCriteriaRequest.nullish(),
-    allowAllConfidenceLevels: z.string().nullish(),
-    searchOptionCode: z.string().nullish(),
-    serviceGeoUnit: locatorRequestServiceGeoUnitRequest.nullish(),
-    freightIndicator: z.string().nullish(),
-  })
-  .transform((data) => ({
-    Request: data['request'],
-    OriginAddress: data['originAddress'],
-    Translate: data['translate'],
-    UnitOfMeasurement: data['unitOfMeasurement'],
-    LocationID: data['locationId'],
-    LocationSearchCriteria: data['locationSearchCriteria'],
-    SortCriteria: data['sortCriteria'],
-    AllowAllConfidenceLevels: data['allowAllConfidenceLevels'],
-    SearchOptionCode: data['searchOptionCode'],
-    ServiceGeoUnit: data['serviceGeoUnit'],
-    FreightIndicator: data['freightIndicator'],
-  }));
+export const locatorRequestRequest: any = z.lazy(() => {
+  return z
+    .object({
+      request: locatorRequestRequest1Request.nullish(),
+      originAddress: locatorRequestOriginAddressRequest.nullish(),
+      translate: locatorRequestTranslateRequest.nullish(),
+      unitOfMeasurement: locatorRequestUnitOfMeasurementRequest.nullish(),
+      locationId: z.array(z.string()).nullish(),
+      locationSearchCriteria: locatorRequestLocationSearchCriteriaRequest.nullish(),
+      sortCriteria: locatorRequestSortCriteriaRequest.nullish(),
+      allowAllConfidenceLevels: z.string().nullish(),
+      searchOptionCode: z.string().nullish(),
+      serviceGeoUnit: locatorRequestServiceGeoUnitRequest.nullish(),
+      freightIndicator: z.string().nullish(),
+    })
+    .transform((data) => ({
+      Request: data['request'],
+      OriginAddress: data['originAddress'],
+      Translate: data['translate'],
+      UnitOfMeasurement: data['unitOfMeasurement'],
+      LocationID: data['locationId'],
+      LocationSearchCriteria: data['locationSearchCriteria'],
+      SortCriteria: data['sortCriteria'],
+      AllowAllConfidenceLevels: data['allowAllConfidenceLevels'],
+      SearchOptionCode: data['searchOptionCode'],
+      ServiceGeoUnit: data['serviceGeoUnit'],
+      FreightIndicator: data['freightIndicator'],
+    }));
+});

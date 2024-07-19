@@ -20,12 +20,14 @@ import {
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const locatorResponseSearchResults = z.object({
-  geocodeCandidate: z.array(searchResultsGeocodeCandidate).optional(),
-  disclaimer: z.string().optional(),
-  dropLocation: z.array(searchResultsDropLocation).optional(),
-  availableLocationAttributes: z.array(searchResultsAvailableLocationAttributes).optional(),
-  activeAvailableAccessPointIndicator: z.string().optional(),
+export const locatorResponseSearchResults: any = z.lazy(() => {
+  return z.object({
+    geocodeCandidate: z.array(searchResultsGeocodeCandidate).optional(),
+    disclaimer: z.string().optional(),
+    dropLocation: z.array(searchResultsDropLocation).optional(),
+    availableLocationAttributes: z.array(searchResultsAvailableLocationAttributes).optional(),
+    activeAvailableAccessPointIndicator: z.string().optional(),
+  });
 });
 
 /**
@@ -56,38 +58,42 @@ export type LocatorResponseSearchResults = z.infer<typeof locatorResponseSearchR
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const locatorResponseSearchResultsResponse = z
-  .object({
-    GeocodeCandidate: z.array(searchResultsGeocodeCandidateResponse).optional(),
-    Disclaimer: z.string().optional(),
-    DropLocation: z.array(searchResultsDropLocationResponse).optional(),
-    AvailableLocationAttributes: z.array(searchResultsAvailableLocationAttributesResponse).optional(),
-    ActiveAvailableAccessPointIndicator: z.string().optional(),
-  })
-  .transform((data) => ({
-    geocodeCandidate: data['GeocodeCandidate'],
-    disclaimer: data['Disclaimer'],
-    dropLocation: data['DropLocation'],
-    availableLocationAttributes: data['AvailableLocationAttributes'],
-    activeAvailableAccessPointIndicator: data['ActiveAvailableAccessPointIndicator'],
-  }));
+export const locatorResponseSearchResultsResponse: any = z.lazy(() => {
+  return z
+    .object({
+      GeocodeCandidate: z.array(searchResultsGeocodeCandidateResponse).optional(),
+      Disclaimer: z.string().optional(),
+      DropLocation: z.array(searchResultsDropLocationResponse).optional(),
+      AvailableLocationAttributes: z.array(searchResultsAvailableLocationAttributesResponse).optional(),
+      ActiveAvailableAccessPointIndicator: z.string().optional(),
+    })
+    .transform((data) => ({
+      geocodeCandidate: data['GeocodeCandidate'],
+      disclaimer: data['Disclaimer'],
+      dropLocation: data['DropLocation'],
+      availableLocationAttributes: data['AvailableLocationAttributes'],
+      activeAvailableAccessPointIndicator: data['ActiveAvailableAccessPointIndicator'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const locatorResponseSearchResultsRequest = z
-  .object({
-    geocodeCandidate: z.array(searchResultsGeocodeCandidateRequest).nullish(),
-    disclaimer: z.string().nullish(),
-    dropLocation: z.array(searchResultsDropLocationRequest).nullish(),
-    availableLocationAttributes: z.array(searchResultsAvailableLocationAttributesRequest).nullish(),
-    activeAvailableAccessPointIndicator: z.string().nullish(),
-  })
-  .transform((data) => ({
-    GeocodeCandidate: data['geocodeCandidate'],
-    Disclaimer: data['disclaimer'],
-    DropLocation: data['dropLocation'],
-    AvailableLocationAttributes: data['availableLocationAttributes'],
-    ActiveAvailableAccessPointIndicator: data['activeAvailableAccessPointIndicator'],
-  }));
+export const locatorResponseSearchResultsRequest: any = z.lazy(() => {
+  return z
+    .object({
+      geocodeCandidate: z.array(searchResultsGeocodeCandidateRequest).nullish(),
+      disclaimer: z.string().nullish(),
+      dropLocation: z.array(searchResultsDropLocationRequest).nullish(),
+      availableLocationAttributes: z.array(searchResultsAvailableLocationAttributesRequest).nullish(),
+      activeAvailableAccessPointIndicator: z.string().nullish(),
+    })
+    .transform((data) => ({
+      GeocodeCandidate: data['geocodeCandidate'],
+      Disclaimer: data['disclaimer'],
+      DropLocation: data['dropLocation'],
+      AvailableLocationAttributes: data['availableLocationAttributes'],
+      ActiveAvailableAccessPointIndicator: data['activeAvailableAccessPointIndicator'],
+    }));
+});

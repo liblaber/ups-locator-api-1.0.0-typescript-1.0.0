@@ -10,12 +10,14 @@ import {
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const locationSearchCriteriaFreightWillCallSearch = z.object({
-  freightWillCallRequestType: z.string().min(1).max(1),
-  facilityAddress: z.array(freightWillCallSearchFacilityAddress),
-  originOrDestination: z.string().min(2).max(2),
-  formatPostalCode: z.string().min(2).max(3),
-  dayOfWeekCode: z.string().min(1).max(1).optional(),
+export const locationSearchCriteriaFreightWillCallSearch: any = z.lazy(() => {
+  return z.object({
+    freightWillCallRequestType: z.string().min(1).max(1),
+    facilityAddress: z.array(freightWillCallSearchFacilityAddress),
+    originOrDestination: z.string().min(2).max(2),
+    formatPostalCode: z.string().min(2).max(3),
+    dayOfWeekCode: z.string().min(1).max(1).optional(),
+  });
 });
 
 /**
@@ -50,38 +52,42 @@ export type LocationSearchCriteriaFreightWillCallSearch = z.infer<typeof locatio
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const locationSearchCriteriaFreightWillCallSearchResponse = z
-  .object({
-    FreightWillCallRequestType: z.string().min(1).max(1),
-    FacilityAddress: z.array(freightWillCallSearchFacilityAddressResponse),
-    OriginOrDestination: z.string().min(2).max(2),
-    FormatPostalCode: z.string().min(2).max(3),
-    DayOfWeekCode: z.string().min(1).max(1).optional(),
-  })
-  .transform((data) => ({
-    freightWillCallRequestType: data['FreightWillCallRequestType'],
-    facilityAddress: data['FacilityAddress'],
-    originOrDestination: data['OriginOrDestination'],
-    formatPostalCode: data['FormatPostalCode'],
-    dayOfWeekCode: data['DayOfWeekCode'],
-  }));
+export const locationSearchCriteriaFreightWillCallSearchResponse: any = z.lazy(() => {
+  return z
+    .object({
+      FreightWillCallRequestType: z.string().min(1).max(1),
+      FacilityAddress: z.array(freightWillCallSearchFacilityAddressResponse),
+      OriginOrDestination: z.string().min(2).max(2),
+      FormatPostalCode: z.string().min(2).max(3),
+      DayOfWeekCode: z.string().min(1).max(1).optional(),
+    })
+    .transform((data) => ({
+      freightWillCallRequestType: data['FreightWillCallRequestType'],
+      facilityAddress: data['FacilityAddress'],
+      originOrDestination: data['OriginOrDestination'],
+      formatPostalCode: data['FormatPostalCode'],
+      dayOfWeekCode: data['DayOfWeekCode'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const locationSearchCriteriaFreightWillCallSearchRequest = z
-  .object({
-    freightWillCallRequestType: z.string().nullish(),
-    facilityAddress: z.array(freightWillCallSearchFacilityAddressRequest).nullish(),
-    originOrDestination: z.string().nullish(),
-    formatPostalCode: z.string().nullish(),
-    dayOfWeekCode: z.string().nullish(),
-  })
-  .transform((data) => ({
-    FreightWillCallRequestType: data['freightWillCallRequestType'],
-    FacilityAddress: data['facilityAddress'],
-    OriginOrDestination: data['originOrDestination'],
-    FormatPostalCode: data['formatPostalCode'],
-    DayOfWeekCode: data['dayOfWeekCode'],
-  }));
+export const locationSearchCriteriaFreightWillCallSearchRequest: any = z.lazy(() => {
+  return z
+    .object({
+      freightWillCallRequestType: z.string().nullish(),
+      facilityAddress: z.array(freightWillCallSearchFacilityAddressRequest).nullish(),
+      originOrDestination: z.string().nullish(),
+      formatPostalCode: z.string().nullish(),
+      dayOfWeekCode: z.string().nullish(),
+    })
+    .transform((data) => ({
+      FreightWillCallRequestType: data['freightWillCallRequestType'],
+      FacilityAddress: data['facilityAddress'],
+      OriginOrDestination: data['originOrDestination'],
+      FormatPostalCode: data['formatPostalCode'],
+      DayOfWeekCode: data['dayOfWeekCode'],
+    }));
+});

@@ -5,9 +5,11 @@ import { z } from 'zod';
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const pickUpPickUpDetails = z.object({
-  pickUpTime: z.string().min(4).max(4).optional(),
-  noPickUpIndicator: z.string(),
+export const pickUpPickUpDetails: any = z.lazy(() => {
+  return z.object({
+    pickUpTime: z.string().min(4).max(4).optional(),
+    noPickUpIndicator: z.string(),
+  });
 });
 
 /**
@@ -22,23 +24,25 @@ export type PickUpPickUpDetails = z.infer<typeof pickUpPickUpDetails>;
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const pickUpPickUpDetailsResponse = z
-  .object({
-    PickUpTime: z.string().min(4).max(4).optional(),
-    NoPickUpIndicator: z.string(),
-  })
-  .transform((data) => ({
-    pickUpTime: data['PickUpTime'],
-    noPickUpIndicator: data['NoPickUpIndicator'],
-  }));
+export const pickUpPickUpDetailsResponse: any = z.lazy(() => {
+  return z
+    .object({
+      PickUpTime: z.string().min(4).max(4).optional(),
+      NoPickUpIndicator: z.string(),
+    })
+    .transform((data) => ({
+      pickUpTime: data['PickUpTime'],
+      noPickUpIndicator: data['NoPickUpIndicator'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const pickUpPickUpDetailsRequest = z
-  .object({ pickUpTime: z.string().nullish(), noPickUpIndicator: z.string().nullish() })
-  .transform((data) => ({
+export const pickUpPickUpDetailsRequest: any = z.lazy(() => {
+  return z.object({ pickUpTime: z.string().nullish(), noPickUpIndicator: z.string().nullish() }).transform((data) => ({
     PickUpTime: data['pickUpTime'],
     NoPickUpIndicator: data['noPickUpIndicator'],
   }));
+});

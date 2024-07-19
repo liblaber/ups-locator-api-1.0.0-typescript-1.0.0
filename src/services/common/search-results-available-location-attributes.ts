@@ -15,9 +15,11 @@ import {
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const searchResultsAvailableLocationAttributes = z.object({
-  optionType: availableLocationAttributesOptionType,
-  optionCode: availableLocationAttributesOptionCode,
+export const searchResultsAvailableLocationAttributes: any = z.lazy(() => {
+  return z.object({
+    optionType: availableLocationAttributesOptionType,
+    optionCode: availableLocationAttributesOptionCode,
+  });
 });
 
 /**
@@ -32,26 +34,30 @@ export type SearchResultsAvailableLocationAttributes = z.infer<typeof searchResu
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const searchResultsAvailableLocationAttributesResponse = z
-  .object({
-    OptionType: availableLocationAttributesOptionTypeResponse,
-    OptionCode: availableLocationAttributesOptionCodeResponse,
-  })
-  .transform((data) => ({
-    optionType: data['OptionType'],
-    optionCode: data['OptionCode'],
-  }));
+export const searchResultsAvailableLocationAttributesResponse: any = z.lazy(() => {
+  return z
+    .object({
+      OptionType: availableLocationAttributesOptionTypeResponse,
+      OptionCode: availableLocationAttributesOptionCodeResponse,
+    })
+    .transform((data) => ({
+      optionType: data['OptionType'],
+      optionCode: data['OptionCode'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const searchResultsAvailableLocationAttributesRequest = z
-  .object({
-    optionType: availableLocationAttributesOptionTypeRequest.nullish(),
-    optionCode: availableLocationAttributesOptionCodeRequest.nullish(),
-  })
-  .transform((data) => ({
-    OptionType: data['optionType'],
-    OptionCode: data['optionCode'],
-  }));
+export const searchResultsAvailableLocationAttributesRequest: any = z.lazy(() => {
+  return z
+    .object({
+      optionType: availableLocationAttributesOptionTypeRequest.nullish(),
+      optionCode: availableLocationAttributesOptionCodeRequest.nullish(),
+    })
+    .transform((data) => ({
+      OptionType: data['optionType'],
+      OptionCode: data['optionCode'],
+    }));
+});

@@ -10,8 +10,10 @@ import {
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const accessPointInformationPrivateNetworkList = z.object({
-  privateNetwork: z.array(privateNetworkListPrivateNetwork),
+export const accessPointInformationPrivateNetworkList: any = z.lazy(() => {
+  return z.object({
+    privateNetwork: z.array(privateNetworkListPrivateNetwork),
+  });
 });
 
 /**
@@ -28,20 +30,22 @@ export type AccessPointInformationPrivateNetworkList = z.infer<typeof accessPoin
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const accessPointInformationPrivateNetworkListResponse = z
-  .object({
-    PrivateNetwork: z.array(privateNetworkListPrivateNetworkResponse),
-  })
-  .transform((data) => ({
-    privateNetwork: data['PrivateNetwork'],
-  }));
+export const accessPointInformationPrivateNetworkListResponse: any = z.lazy(() => {
+  return z
+    .object({
+      PrivateNetwork: z.array(privateNetworkListPrivateNetworkResponse),
+    })
+    .transform((data) => ({
+      privateNetwork: data['PrivateNetwork'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const accessPointInformationPrivateNetworkListRequest = z
-  .object({ privateNetwork: z.array(privateNetworkListPrivateNetworkRequest).nullish() })
-  .transform((data) => ({
+export const accessPointInformationPrivateNetworkListRequest: any = z.lazy(() => {
+  return z.object({ privateNetwork: z.array(privateNetworkListPrivateNetworkRequest).nullish() }).transform((data) => ({
     PrivateNetwork: data['privateNetwork'],
   }));
+});

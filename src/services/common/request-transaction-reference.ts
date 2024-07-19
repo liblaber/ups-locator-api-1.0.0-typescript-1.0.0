@@ -5,8 +5,10 @@ import { z } from 'zod';
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const requestTransactionReference = z.object({
-  customerContext: z.string().optional(),
+export const requestTransactionReference: any = z.lazy(() => {
+  return z.object({
+    customerContext: z.string().optional(),
+  });
 });
 
 /**
@@ -20,20 +22,22 @@ export type RequestTransactionReference = z.infer<typeof requestTransactionRefer
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const requestTransactionReferenceResponse = z
-  .object({
-    CustomerContext: z.string().optional(),
-  })
-  .transform((data) => ({
-    customerContext: data['CustomerContext'],
-  }));
+export const requestTransactionReferenceResponse: any = z.lazy(() => {
+  return z
+    .object({
+      CustomerContext: z.string().optional(),
+    })
+    .transform((data) => ({
+      customerContext: data['CustomerContext'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const requestTransactionReferenceRequest = z
-  .object({ customerContext: z.string().nullish() })
-  .transform((data) => ({
+export const requestTransactionReferenceRequest: any = z.lazy(() => {
+  return z.object({ customerContext: z.string().nullish() }).transform((data) => ({
     CustomerContext: data['customerContext'],
   }));
+});

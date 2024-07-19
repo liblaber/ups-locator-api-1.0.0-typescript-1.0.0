@@ -5,9 +5,11 @@ import { z } from 'zod';
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const availableLocationAttributesOptionType = z.object({
-  code: z.string(),
-  description: z.string(),
+export const availableLocationAttributesOptionType: any = z.lazy(() => {
+  return z.object({
+    code: z.string(),
+    description: z.string(),
+  });
 });
 
 /**
@@ -22,23 +24,25 @@ export type AvailableLocationAttributesOptionType = z.infer<typeof availableLoca
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const availableLocationAttributesOptionTypeResponse = z
-  .object({
-    Code: z.string(),
-    Description: z.string(),
-  })
-  .transform((data) => ({
-    code: data['Code'],
-    description: data['Description'],
-  }));
+export const availableLocationAttributesOptionTypeResponse: any = z.lazy(() => {
+  return z
+    .object({
+      Code: z.string(),
+      Description: z.string(),
+    })
+    .transform((data) => ({
+      code: data['Code'],
+      description: data['Description'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const availableLocationAttributesOptionTypeRequest = z
-  .object({ code: z.string().nullish(), description: z.string().nullish() })
-  .transform((data) => ({
+export const availableLocationAttributesOptionTypeRequest: any = z.lazy(() => {
+  return z.object({ code: z.string().nullish(), description: z.string().nullish() }).transform((data) => ({
     Code: data['code'],
     Description: data['description'],
   }));
+});

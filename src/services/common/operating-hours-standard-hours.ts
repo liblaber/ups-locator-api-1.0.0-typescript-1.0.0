@@ -10,9 +10,11 @@ import {
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const operatingHoursStandardHours = z.object({
-  hoursType: z.string().min(2).max(2),
-  dayOfWeek: z.array(standardHoursDayOfWeek),
+export const operatingHoursStandardHours: any = z.lazy(() => {
+  return z.object({
+    hoursType: z.string().min(2).max(2),
+    dayOfWeek: z.array(standardHoursDayOfWeek),
+  });
 });
 
 /**
@@ -38,23 +40,27 @@ export type OperatingHoursStandardHours = z.infer<typeof operatingHoursStandardH
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const operatingHoursStandardHoursResponse = z
-  .object({
-    HoursType: z.string().min(2).max(2),
-    DayOfWeek: z.array(standardHoursDayOfWeekResponse),
-  })
-  .transform((data) => ({
-    hoursType: data['HoursType'],
-    dayOfWeek: data['DayOfWeek'],
-  }));
+export const operatingHoursStandardHoursResponse: any = z.lazy(() => {
+  return z
+    .object({
+      HoursType: z.string().min(2).max(2),
+      DayOfWeek: z.array(standardHoursDayOfWeekResponse),
+    })
+    .transform((data) => ({
+      hoursType: data['HoursType'],
+      dayOfWeek: data['DayOfWeek'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const operatingHoursStandardHoursRequest = z
-  .object({ hoursType: z.string().nullish(), dayOfWeek: z.array(standardHoursDayOfWeekRequest).nullish() })
-  .transform((data) => ({
-    HoursType: data['hoursType'],
-    DayOfWeek: data['dayOfWeek'],
-  }));
+export const operatingHoursStandardHoursRequest: any = z.lazy(() => {
+  return z
+    .object({ hoursType: z.string().nullish(), dayOfWeek: z.array(standardHoursDayOfWeekRequest).nullish() })
+    .transform((data) => ({
+      HoursType: data['hoursType'],
+      DayOfWeek: data['dayOfWeek'],
+    }));
+});

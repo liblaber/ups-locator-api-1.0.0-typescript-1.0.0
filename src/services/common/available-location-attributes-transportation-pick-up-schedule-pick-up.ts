@@ -10,9 +10,11 @@ import {
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const availableLocationAttributesTransportationPickUpSchedulePickUp = z.object({
-  dayOfWeek: z.string().min(1).max(1),
-  pickUpDetails: availableLocationAttributesPickUpPickUpDetails,
+export const availableLocationAttributesTransportationPickUpSchedulePickUp: any = z.lazy(() => {
+  return z.object({
+    dayOfWeek: z.string().min(1).max(1),
+    pickUpDetails: availableLocationAttributesPickUpPickUpDetails,
+  });
 });
 
 /**
@@ -37,26 +39,30 @@ export type AvailableLocationAttributesTransportationPickUpSchedulePickUp = z.in
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const availableLocationAttributesTransportationPickUpSchedulePickUpResponse = z
-  .object({
-    DayOfWeek: z.string().min(1).max(1),
-    PickUpDetails: availableLocationAttributesPickUpPickUpDetailsResponse,
-  })
-  .transform((data) => ({
-    dayOfWeek: data['DayOfWeek'],
-    pickUpDetails: data['PickUpDetails'],
-  }));
+export const availableLocationAttributesTransportationPickUpSchedulePickUpResponse: any = z.lazy(() => {
+  return z
+    .object({
+      DayOfWeek: z.string().min(1).max(1),
+      PickUpDetails: availableLocationAttributesPickUpPickUpDetailsResponse,
+    })
+    .transform((data) => ({
+      dayOfWeek: data['DayOfWeek'],
+      pickUpDetails: data['PickUpDetails'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const availableLocationAttributesTransportationPickUpSchedulePickUpRequest = z
-  .object({
-    dayOfWeek: z.string().nullish(),
-    pickUpDetails: availableLocationAttributesPickUpPickUpDetailsRequest.nullish(),
-  })
-  .transform((data) => ({
-    DayOfWeek: data['dayOfWeek'],
-    PickUpDetails: data['pickUpDetails'],
-  }));
+export const availableLocationAttributesTransportationPickUpSchedulePickUpRequest: any = z.lazy(() => {
+  return z
+    .object({
+      dayOfWeek: z.string().nullish(),
+      pickUpDetails: availableLocationAttributesPickUpPickUpDetailsRequest.nullish(),
+    })
+    .transform((data) => ({
+      DayOfWeek: data['dayOfWeek'],
+      PickUpDetails: data['pickUpDetails'],
+    }));
+});

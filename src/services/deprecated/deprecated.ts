@@ -4,21 +4,18 @@ import { z } from 'zod';
 import { BaseService } from '../base-service';
 import { ContentType, HttpResponse } from '../../http';
 import { RequestConfig } from '../../http/types';
-import {
-  LocatorRequestWrapper,
-  LocatorResponseWrapper,
-  locatorRequestWrapperRequest,
-  locatorResponseWrapperResponse,
-} from '../common';
+import { Request } from '../../http/transport/request';
+import { LocatorRequestWrapper, locatorRequestWrapperRequest } from '../common/locator-request-wrapper';
+import { LocatorResponseWrapper, locatorResponseWrapperResponse } from '../common/locator-response-wrapper';
 import { LocatorParams } from './request-params';
 
-export class _Version_Service extends BaseService {
+export class DeprecatedService extends BaseService {
   /**
  * The Locator API allows you to find UPS locations - such as drop-off points, retail locations, and UPS access points (third-party retail locations that offer UPS package drop-off, or delivery services). The API provides capabilities to search by location, services offered, program types, and related criteria. You can also retrieve hours of operation, location details, and additional UPS services offered at specific locations.
- * @param {string} version - Version of API
+ * @param {string} deprecatedVersion - Version of API
 
 Valid values:
-- v2
+- v1
 
  * @param {string} reqOption - Indicates the type of request.
 Valid values:
@@ -37,38 +34,29 @@ Valid values:
  * @returns {Promise<HttpResponse<LocatorResponseWrapper>>} successful operation
  */
   async locator(
-    version: string,
+    deprecatedVersion: string,
     reqOption: string,
     body: LocatorRequestWrapper,
     params?: LocatorParams,
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<LocatorResponseWrapper>> {
-    const path = this.client.buildPath('/locations/{version}/search/availabilities/{reqOption}', {
-      version: version,
-      reqOption: reqOption,
-    });
-    const options: any = {
+    const request = new Request({
+      method: 'POST',
+      body,
+      path: '/locations/{deprecatedVersion}/search/availabilities/{reqOption}',
+      config: this.config,
       responseSchema: locatorResponseWrapperResponse,
       requestSchema: locatorRequestWrapperRequest,
-      body: body as any,
-      queryParams: {},
-      headers: {
-        'Content-Type': 'application/json',
-      },
       requestContentType: ContentType.Json,
       responseContentType: ContentType.Json,
-      retry: requestConfig?.retry,
-      config: this.config,
-    };
-    if (params?.transId) {
-      options.headers['transId'] = params?.transId;
-    }
-    if (params?.transactionSrc) {
-      options.headers['transactionSrc'] = params?.transactionSrc;
-    }
-    if (params?.locale) {
-      options.queryParams['Locale'] = params?.locale;
-    }
-    return this.client.post(path, options);
+      requestConfig,
+    });
+    request.addPathParam('deprecatedVersion', deprecatedVersion);
+    request.addPathParam('reqOption', reqOption);
+    request.addQueryParam('Locale', params?.locale);
+    request.addHeaderParam('transId', params?.transId);
+    request.addHeaderParam('transactionSrc', params?.transactionSrc);
+    request.addHeaderParam('Content-Type', 'application/json');
+    return this.client.call(request);
   }
 }
