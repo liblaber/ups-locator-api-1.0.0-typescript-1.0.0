@@ -1,8 +1,8 @@
 {
-  "liblabVersion": "2.1.18",
-  "date": "2024-07-05T21:18:25.746Z",
+  "liblabVersion": "2.1.20",
+  "date": "2024-07-19T10:16:46.815Z",
   "config": {
-    "apiId": 382,
+    "apiId": 418,
     "baseUrl": "https://www.cie.ups.com/api",
     "sdkName": "ups_locator",
     "sdkVersion": "1.0.0",
@@ -14,28 +14,6 @@
     "specFilePath": "./ups_Locator.yaml",
     "auth": ["basic"],
     "languageOptions": {
-      "csharp": {
-        "packageId": "",
-        "githubRepoName": "",
-        "ignoreFiles": [],
-        "liblabVersion": "2",
-        "sdkVersion": "1.0.0"
-      },
-      "go": {
-        "goModuleName": "github.com/swagger-api/swagger-petstore",
-        "githubRepoName": "",
-        "ignoreFiles": [],
-        "liblabVersion": "2",
-        "sdkVersion": "1.0.0"
-      },
-      "python": {
-        "alwaysInitializeOptionals": false,
-        "pypiPackageName": "ups-locator-client",
-        "githubRepoName": "",
-        "ignoreFiles": [],
-        "liblabVersion": "2",
-        "sdkVersion": "1.0.0"
-      },
       "typescript": {
         "bundle": false,
         "exportClassDefault": false,
@@ -51,11 +29,15 @@
     "publishing": {
       "githubOrg": ""
     },
+    "authentication": {
+      "basic": {
+        "enabled": true
+      }
+    },
     "devContainer": false,
     "generateEnv": true,
     "includeOptionalSnippetParameters": true,
     "inferServiceNames": false,
-    "injectedModels": [],
     "license": {
       "type": "MIT",
       "name": "MIT",
@@ -73,18 +55,8 @@
       "httpCodesToRetry": [408, 429, 500, 502, 503, 504],
       "httpMethodsToRetry": ["GET", "POST", "PUT", "DELETE", "PATCH", "HEAD", "OPTIONS"]
     },
-    "authentication": {
-      "basic": {
-        "enabled": true
-      }
-    },
     "multiTenant": true,
-    "hooksLocation": {
-      "bucketKey": "12992/hooks.zip",
-      "bucketName": "dev-liblab-api-stack-hooks"
-    },
-    "specUrl": "https://dev-liblab-api-stack-specs.s3.us-east-1.amazonaws.com/382/open-api-spec.yaml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3C2RXH7MWUCMN7ON%2F20240705%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240705T211820Z&X-Amz-Expires=43200&X-Amz-Signature=e60776c8f59f01b8136831e8596e2c6c90237832397044069119ca171755d37d&X-Amz-SignedHeaders=host&x-id=GetObject",
-    "workflow": null,
+    "specUrl": "https://dev-liblab-api-stack-specs.s3.us-east-1.amazonaws.com/418/open-api-spec.yaml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3C2RXH7MWUCMN7ON%2F20240719%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240719T101640Z&X-Amz-Expires=43200&X-Amz-Signature=135f9e68b381694130714a74e44d416f0f680b7eabbf632c5607bf3d7dade83c&X-Amz-SignedHeaders=host&x-id=GetObject",
     "includeWatermark": true,
     "language": "typescript",
     "deliveryMethod": "zip",
@@ -215,13 +187,13 @@
     "src/services/common/available-location-attributes-pick-up-pick-up-details.ts",
     ".gitignore",
     "src/services/base-service.ts",
-    "src/services/_version_/_version_.ts",
-    "src/services/_deprecated-version_/_deprecated-version_.ts",
+    "src/services/locations/locations.ts",
+    "src/services/deprecated/deprecated.ts",
     "src/index.ts",
     "src/http/index.ts",
     "src/services/common/index.ts",
-    "src/services/_version_/index.ts",
-    "src/services/_deprecated-version_/index.ts",
+    "src/services/locations/index.ts",
+    "src/services/deprecated/index.ts",
     "src/http/handlers/handler-chain.ts",
     "src/http/types.ts",
     "src/http/error.ts",
@@ -234,8 +206,8 @@
     "src/http/handlers/response-validation-handler.ts",
     "src/http/handlers/auth-handler.ts",
     "./LICENSE",
-    "src/services/_version_/request-params.ts",
-    "src/services/_deprecated-version_/request-params.ts",
+    "src/services/locations/request-params.ts",
+    "src/services/deprecated/request-params.ts",
     "documentation/models/LocatorRequestWrapper.md",
     "documentation/models/LocatorResponseWrapper.md",
     "documentation/models/LocatorRequest.md",
@@ -319,8 +291,9 @@
     "documentation/models/AvailableLocationAttributesTransportationPickUpSchedulePickUp.md",
     "documentation/models/AvailableLocationAttributesPickUpPickUpDetails.md",
     "src/http/handlers/request-validation-handler.ts",
-    "documentation/services/_DeprecatedVersion_Service.md",
-    "documentation/services/_Version_Service.md",
+    "src/http/transport/request.ts",
+    "documentation/services/DeprecatedService.md",
+    "documentation/services/LocationsService.md",
     "README.md"
   ]
 }

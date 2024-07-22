@@ -10,8 +10,10 @@ import {
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const accessPointInformationBusinessClassificationList = z.object({
-  businessClassification: z.array(businessClassificationListBusinessClassification),
+export const accessPointInformationBusinessClassificationList: any = z.lazy(() => {
+  return z.object({
+    businessClassification: z.array(businessClassificationListBusinessClassification),
+  });
 });
 
 /**
@@ -30,20 +32,24 @@ export type AccessPointInformationBusinessClassificationList = z.infer<
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const accessPointInformationBusinessClassificationListResponse = z
-  .object({
-    BusinessClassification: z.array(businessClassificationListBusinessClassificationResponse),
-  })
-  .transform((data) => ({
-    businessClassification: data['BusinessClassification'],
-  }));
+export const accessPointInformationBusinessClassificationListResponse: any = z.lazy(() => {
+  return z
+    .object({
+      BusinessClassification: z.array(businessClassificationListBusinessClassificationResponse),
+    })
+    .transform((data) => ({
+      businessClassification: data['BusinessClassification'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const accessPointInformationBusinessClassificationListRequest = z
-  .object({ businessClassification: z.array(businessClassificationListBusinessClassificationRequest).nullish() })
-  .transform((data) => ({
-    BusinessClassification: data['businessClassification'],
-  }));
+export const accessPointInformationBusinessClassificationListRequest: any = z.lazy(() => {
+  return z
+    .object({ businessClassification: z.array(businessClassificationListBusinessClassificationRequest).nullish() })
+    .transform((data) => ({
+      BusinessClassification: data['businessClassification'],
+    }));
+});

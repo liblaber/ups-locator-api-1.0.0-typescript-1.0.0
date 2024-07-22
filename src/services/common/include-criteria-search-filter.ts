@@ -5,11 +5,13 @@ import { z } from 'zod';
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const includeCriteriaSearchFilter = z.object({
-  dcrIndicator: z.string().optional(),
-  shippingAvailabilityIndicator: z.string().optional(),
-  shipperPreparationDelay: z.string().min(1).max(1).optional(),
-  clickAndCollectSortWithDistance: z.string().max(3).optional(),
+export const includeCriteriaSearchFilter: any = z.lazy(() => {
+  return z.object({
+    dcrIndicator: z.string().optional(),
+    shippingAvailabilityIndicator: z.string().optional(),
+    shipperPreparationDelay: z.string().min(1).max(1).optional(),
+    clickAndCollectSortWithDistance: z.string().max(3).optional(),
+  });
 });
 
 /**
@@ -26,34 +28,38 @@ export type IncludeCriteriaSearchFilter = z.infer<typeof includeCriteriaSearchFi
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const includeCriteriaSearchFilterResponse = z
-  .object({
-    DCRIndicator: z.string().optional(),
-    ShippingAvailabilityIndicator: z.string().optional(),
-    ShipperPreparationDelay: z.string().min(1).max(1).optional(),
-    ClickAndCollectSortWithDistance: z.string().max(3).optional(),
-  })
-  .transform((data) => ({
-    dcrIndicator: data['DCRIndicator'],
-    shippingAvailabilityIndicator: data['ShippingAvailabilityIndicator'],
-    shipperPreparationDelay: data['ShipperPreparationDelay'],
-    clickAndCollectSortWithDistance: data['ClickAndCollectSortWithDistance'],
-  }));
+export const includeCriteriaSearchFilterResponse: any = z.lazy(() => {
+  return z
+    .object({
+      DCRIndicator: z.string().optional(),
+      ShippingAvailabilityIndicator: z.string().optional(),
+      ShipperPreparationDelay: z.string().min(1).max(1).optional(),
+      ClickAndCollectSortWithDistance: z.string().max(3).optional(),
+    })
+    .transform((data) => ({
+      dcrIndicator: data['DCRIndicator'],
+      shippingAvailabilityIndicator: data['ShippingAvailabilityIndicator'],
+      shipperPreparationDelay: data['ShipperPreparationDelay'],
+      clickAndCollectSortWithDistance: data['ClickAndCollectSortWithDistance'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const includeCriteriaSearchFilterRequest = z
-  .object({
-    dcrIndicator: z.string().nullish(),
-    shippingAvailabilityIndicator: z.string().nullish(),
-    shipperPreparationDelay: z.string().nullish(),
-    clickAndCollectSortWithDistance: z.string().nullish(),
-  })
-  .transform((data) => ({
-    DCRIndicator: data['dcrIndicator'],
-    ShippingAvailabilityIndicator: data['shippingAvailabilityIndicator'],
-    ShipperPreparationDelay: data['shipperPreparationDelay'],
-    ClickAndCollectSortWithDistance: data['clickAndCollectSortWithDistance'],
-  }));
+export const includeCriteriaSearchFilterRequest: any = z.lazy(() => {
+  return z
+    .object({
+      dcrIndicator: z.string().nullish(),
+      shippingAvailabilityIndicator: z.string().nullish(),
+      shipperPreparationDelay: z.string().nullish(),
+      clickAndCollectSortWithDistance: z.string().nullish(),
+    })
+    .transform((data) => ({
+      DCRIndicator: data['dcrIndicator'],
+      ShippingAvailabilityIndicator: data['shippingAvailabilityIndicator'],
+      ShipperPreparationDelay: data['shipperPreparationDelay'],
+      ClickAndCollectSortWithDistance: data['clickAndCollectSortWithDistance'],
+    }));
+});

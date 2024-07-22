@@ -15,10 +15,12 @@ import {
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const searchResultsGeocodeCandidate = z.object({
-  addressKeyFormat: geocodeCandidateAddressKeyFormat,
-  geocode: geocodeCandidateGeocode,
-  landmarkName: z.string().min(1).max(50).optional(),
+export const searchResultsGeocodeCandidate: any = z.lazy(() => {
+  return z.object({
+    addressKeyFormat: geocodeCandidateAddressKeyFormat,
+    geocode: geocodeCandidateGeocode,
+    landmarkName: z.string().min(1).max(50).optional(),
+  });
 });
 
 /**
@@ -34,30 +36,34 @@ export type SearchResultsGeocodeCandidate = z.infer<typeof searchResultsGeocodeC
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const searchResultsGeocodeCandidateResponse = z
-  .object({
-    AddressKeyFormat: geocodeCandidateAddressKeyFormatResponse,
-    Geocode: geocodeCandidateGeocodeResponse,
-    LandmarkName: z.string().min(1).max(50).optional(),
-  })
-  .transform((data) => ({
-    addressKeyFormat: data['AddressKeyFormat'],
-    geocode: data['Geocode'],
-    landmarkName: data['LandmarkName'],
-  }));
+export const searchResultsGeocodeCandidateResponse: any = z.lazy(() => {
+  return z
+    .object({
+      AddressKeyFormat: geocodeCandidateAddressKeyFormatResponse,
+      Geocode: geocodeCandidateGeocodeResponse,
+      LandmarkName: z.string().min(1).max(50).optional(),
+    })
+    .transform((data) => ({
+      addressKeyFormat: data['AddressKeyFormat'],
+      geocode: data['Geocode'],
+      landmarkName: data['LandmarkName'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const searchResultsGeocodeCandidateRequest = z
-  .object({
-    addressKeyFormat: geocodeCandidateAddressKeyFormatRequest.nullish(),
-    geocode: geocodeCandidateGeocodeRequest.nullish(),
-    landmarkName: z.string().nullish(),
-  })
-  .transform((data) => ({
-    AddressKeyFormat: data['addressKeyFormat'],
-    Geocode: data['geocode'],
-    LandmarkName: data['landmarkName'],
-  }));
+export const searchResultsGeocodeCandidateRequest: any = z.lazy(() => {
+  return z
+    .object({
+      addressKeyFormat: geocodeCandidateAddressKeyFormatRequest.nullish(),
+      geocode: geocodeCandidateGeocodeRequest.nullish(),
+      landmarkName: z.string().nullish(),
+    })
+    .transform((data) => ({
+      AddressKeyFormat: data['addressKeyFormat'],
+      Geocode: data['geocode'],
+      LandmarkName: data['landmarkName'],
+    }));
+});

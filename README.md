@@ -66,10 +66,10 @@ The SDK provides various services to interact with the API.
 <details> 
 <summary>Below is a list of all available services with links to their detailed documentation:</summary>
 
-| Name                                                                                |
-| :---------------------------------------------------------------------------------- |
-| [\_Version_Service](documentation/services/_Version_Service.md)                     |
-| [\_DeprecatedVersion_Service](documentation/services/_DeprecatedVersion_Service.md) |
+| Name                                                             |
+| :--------------------------------------------------------------- |
+| [LocationsService](documentation/services/LocationsService.md)   |
+| [DeprecatedService](documentation/services/DeprecatedService.md) |
 
 </details>
 

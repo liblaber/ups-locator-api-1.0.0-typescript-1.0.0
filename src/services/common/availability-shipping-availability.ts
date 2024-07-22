@@ -10,9 +10,11 @@ import {
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const availabilityShippingAvailability = z.object({
-  availableIndicator: z.string().optional(),
-  unavailableReason: shippingAvailabilityUnavailableReason.optional(),
+export const availabilityShippingAvailability: any = z.lazy(() => {
+  return z.object({
+    availableIndicator: z.string().optional(),
+    unavailableReason: shippingAvailabilityUnavailableReason.optional(),
+  });
 });
 
 /**
@@ -27,26 +29,30 @@ export type AvailabilityShippingAvailability = z.infer<typeof availabilityShippi
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const availabilityShippingAvailabilityResponse = z
-  .object({
-    AvailableIndicator: z.string().optional(),
-    UnavailableReason: shippingAvailabilityUnavailableReasonResponse.optional(),
-  })
-  .transform((data) => ({
-    availableIndicator: data['AvailableIndicator'],
-    unavailableReason: data['UnavailableReason'],
-  }));
+export const availabilityShippingAvailabilityResponse: any = z.lazy(() => {
+  return z
+    .object({
+      AvailableIndicator: z.string().optional(),
+      UnavailableReason: shippingAvailabilityUnavailableReasonResponse.optional(),
+    })
+    .transform((data) => ({
+      availableIndicator: data['AvailableIndicator'],
+      unavailableReason: data['UnavailableReason'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const availabilityShippingAvailabilityRequest = z
-  .object({
-    availableIndicator: z.string().nullish(),
-    unavailableReason: shippingAvailabilityUnavailableReasonRequest.nullish(),
-  })
-  .transform((data) => ({
-    AvailableIndicator: data['availableIndicator'],
-    UnavailableReason: data['unavailableReason'],
-  }));
+export const availabilityShippingAvailabilityRequest: any = z.lazy(() => {
+  return z
+    .object({
+      availableIndicator: z.string().nullish(),
+      unavailableReason: shippingAvailabilityUnavailableReasonRequest.nullish(),
+    })
+    .transform((data) => ({
+      AvailableIndicator: data['availableIndicator'],
+      UnavailableReason: data['unavailableReason'],
+    }));
+});

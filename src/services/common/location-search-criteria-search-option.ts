@@ -20,10 +20,12 @@ import {
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const locationSearchCriteriaSearchOption = z.object({
-  optionType: searchOptionOptionType,
-  optionCode: z.array(searchOptionOptionCode),
-  relation: searchOptionRelation.optional(),
+export const locationSearchCriteriaSearchOption: any = z.lazy(() => {
+  return z.object({
+    optionType: searchOptionOptionType,
+    optionCode: z.array(searchOptionOptionCode),
+    relation: searchOptionRelation.optional(),
+  });
 });
 
 /**
@@ -57,30 +59,34 @@ export type LocationSearchCriteriaSearchOption = z.infer<typeof locationSearchCr
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const locationSearchCriteriaSearchOptionResponse = z
-  .object({
-    OptionType: searchOptionOptionTypeResponse,
-    OptionCode: z.array(searchOptionOptionCodeResponse),
-    Relation: searchOptionRelationResponse.optional(),
-  })
-  .transform((data) => ({
-    optionType: data['OptionType'],
-    optionCode: data['OptionCode'],
-    relation: data['Relation'],
-  }));
+export const locationSearchCriteriaSearchOptionResponse: any = z.lazy(() => {
+  return z
+    .object({
+      OptionType: searchOptionOptionTypeResponse,
+      OptionCode: z.array(searchOptionOptionCodeResponse),
+      Relation: searchOptionRelationResponse.optional(),
+    })
+    .transform((data) => ({
+      optionType: data['OptionType'],
+      optionCode: data['OptionCode'],
+      relation: data['Relation'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const locationSearchCriteriaSearchOptionRequest = z
-  .object({
-    optionType: searchOptionOptionTypeRequest.nullish(),
-    optionCode: z.array(searchOptionOptionCodeRequest).nullish(),
-    relation: searchOptionRelationRequest.nullish(),
-  })
-  .transform((data) => ({
-    OptionType: data['optionType'],
-    OptionCode: data['optionCode'],
-    Relation: data['relation'],
-  }));
+export const locationSearchCriteriaSearchOptionRequest: any = z.lazy(() => {
+  return z
+    .object({
+      optionType: searchOptionOptionTypeRequest.nullish(),
+      optionCode: z.array(searchOptionOptionCodeRequest).nullish(),
+      relation: searchOptionRelationRequest.nullish(),
+    })
+    .transform((data) => ({
+      OptionType: data['optionType'],
+      OptionCode: data['optionCode'],
+      Relation: data['relation'],
+    }));
+});

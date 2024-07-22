@@ -10,8 +10,10 @@ import {
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const optionCodeTransportationPickUpSchedule = z.object({
-  pickUp: z.array(transportationPickUpSchedulePickUp),
+export const optionCodeTransportationPickUpSchedule: any = z.lazy(() => {
+  return z.object({
+    pickUp: z.array(transportationPickUpSchedulePickUp),
+  });
 });
 
 /**
@@ -28,20 +30,22 @@ export type OptionCodeTransportationPickUpSchedule = z.infer<typeof optionCodeTr
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const optionCodeTransportationPickUpScheduleResponse = z
-  .object({
-    PickUp: z.array(transportationPickUpSchedulePickUpResponse),
-  })
-  .transform((data) => ({
-    pickUp: data['PickUp'],
-  }));
+export const optionCodeTransportationPickUpScheduleResponse: any = z.lazy(() => {
+  return z
+    .object({
+      PickUp: z.array(transportationPickUpSchedulePickUpResponse),
+    })
+    .transform((data) => ({
+      pickUp: data['PickUp'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const optionCodeTransportationPickUpScheduleRequest = z
-  .object({ pickUp: z.array(transportationPickUpSchedulePickUpRequest).nullish() })
-  .transform((data) => ({
+export const optionCodeTransportationPickUpScheduleRequest: any = z.lazy(() => {
+  return z.object({ pickUp: z.array(transportationPickUpSchedulePickUpRequest).nullish() }).transform((data) => ({
     PickUp: data['pickUp'],
   }));
+});

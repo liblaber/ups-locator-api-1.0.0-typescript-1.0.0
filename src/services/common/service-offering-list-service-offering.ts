@@ -5,9 +5,11 @@ import { z } from 'zod';
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const serviceOfferingListServiceOffering = z.object({
-  code: z.string().min(3).max(3),
-  description: z.string().min(1).max(35),
+export const serviceOfferingListServiceOffering: any = z.lazy(() => {
+  return z.object({
+    code: z.string().min(3).max(3),
+    description: z.string().min(1).max(35),
+  });
 });
 
 /**
@@ -35,23 +37,25 @@ export type ServiceOfferingListServiceOffering = z.infer<typeof serviceOfferingL
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const serviceOfferingListServiceOfferingResponse = z
-  .object({
-    Code: z.string().min(3).max(3),
-    Description: z.string().min(1).max(35),
-  })
-  .transform((data) => ({
-    code: data['Code'],
-    description: data['Description'],
-  }));
+export const serviceOfferingListServiceOfferingResponse: any = z.lazy(() => {
+  return z
+    .object({
+      Code: z.string().min(3).max(3),
+      Description: z.string().min(1).max(35),
+    })
+    .transform((data) => ({
+      code: data['Code'],
+      description: data['Description'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const serviceOfferingListServiceOfferingRequest = z
-  .object({ code: z.string().nullish(), description: z.string().nullish() })
-  .transform((data) => ({
+export const serviceOfferingListServiceOfferingRequest: any = z.lazy(() => {
+  return z.object({ code: z.string().nullish(), description: z.string().nullish() }).transform((data) => ({
     Code: data['code'],
     Description: data['description'],
   }));
+});

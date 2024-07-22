@@ -5,8 +5,10 @@ import { z } from 'zod';
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const includeCriteriaMerchantAccountNumberList = z.object({
-  merchantAccountNumber: z.array(z.string()),
+export const includeCriteriaMerchantAccountNumberList: any = z.lazy(() => {
+  return z.object({
+    merchantAccountNumber: z.array(z.string()),
+  });
 });
 
 /**
@@ -20,20 +22,22 @@ export type IncludeCriteriaMerchantAccountNumberList = z.infer<typeof includeCri
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const includeCriteriaMerchantAccountNumberListResponse = z
-  .object({
-    MerchantAccountNumber: z.array(z.string()),
-  })
-  .transform((data) => ({
-    merchantAccountNumber: data['MerchantAccountNumber'],
-  }));
+export const includeCriteriaMerchantAccountNumberListResponse: any = z.lazy(() => {
+  return z
+    .object({
+      MerchantAccountNumber: z.array(z.string()),
+    })
+    .transform((data) => ({
+      merchantAccountNumber: data['MerchantAccountNumber'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const includeCriteriaMerchantAccountNumberListRequest = z
-  .object({ merchantAccountNumber: z.array(z.string()).nullish() })
-  .transform((data) => ({
+export const includeCriteriaMerchantAccountNumberListRequest: any = z.lazy(() => {
+  return z.object({ merchantAccountNumber: z.array(z.string()).nullish() }).transform((data) => ({
     MerchantAccountNumber: data['merchantAccountNumber'],
   }));
+});

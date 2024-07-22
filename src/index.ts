@@ -2,13 +2,13 @@
 
 import { Environment } from './http/environment';
 import { SdkConfig } from './http/types';
-import { _Version_Service } from './services/_version_';
-import { _DeprecatedVersion_Service } from './services/_deprecated-version_';
+import { LocationsService } from './services/locations';
+import { DeprecatedService } from './services/deprecated';
 
 export class UpsLocator {
-  public readonly _version_: _Version_Service;
+  public readonly locations: LocationsService;
 
-  public readonly _deprecatedVersion_: _DeprecatedVersion_Service;
+  public readonly deprecated: DeprecatedService;
 
   constructor(public config: SdkConfig) {
     const baseUrl = config.environment || config.baseUrl || Environment.DEFAULT;
@@ -16,29 +16,34 @@ export class UpsLocator {
       ...config,
       baseUrl,
     };
-    this._version_ = new _Version_Service(this.config);
+    this.locations = new LocationsService(this.config);
 
-    this._deprecatedVersion_ = new _DeprecatedVersion_Service(this.config);
+    this.deprecated = new DeprecatedService(this.config);
   }
 
   set baseUrl(baseUrl: string) {
-    this._version_.baseUrl = baseUrl;
-    this._deprecatedVersion_.baseUrl = baseUrl;
+    this.locations.baseUrl = baseUrl;
+    this.deprecated.baseUrl = baseUrl;
   }
 
   set environment(environment: Environment) {
-    this._version_.baseUrl = environment;
-    this._deprecatedVersion_.baseUrl = environment;
+    this.locations.baseUrl = environment;
+    this.deprecated.baseUrl = environment;
+  }
+
+  set timeout(timeout: number) {
+    this.locations.timeout = timeout;
+    this.deprecated.timeout = timeout;
   }
 
   set username(username: string) {
-    this._version_.username = username;
-    this._deprecatedVersion_.username = username;
+    this.locations.username = username;
+    this.deprecated.username = username;
   }
 
   set password(password: string) {
-    this._version_.password = password;
-    this._deprecatedVersion_.password = password;
+    this.locations.password = password;
+    this.deprecated.password = password;
   }
 }
 

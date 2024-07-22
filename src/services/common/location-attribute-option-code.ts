@@ -10,12 +10,14 @@ import {
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const locationAttributeOptionCode = z.object({
-  category: z.string().optional(),
-  code: z.string(),
-  description: z.string().min(1).max(50),
-  name: z.string().min(1).max(50).optional(),
-  transportationPickUpSchedule: optionCodeTransportationPickUpSchedule.optional(),
+export const locationAttributeOptionCode: any = z.lazy(() => {
+  return z.object({
+    category: z.string().optional(),
+    code: z.string(),
+    description: z.string().min(1).max(50),
+    name: z.string().min(1).max(50).optional(),
+    transportationPickUpSchedule: optionCodeTransportationPickUpSchedule.optional(),
+  });
 });
 
 /**
@@ -39,38 +41,42 @@ export type LocationAttributeOptionCode = z.infer<typeof locationAttributeOption
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const locationAttributeOptionCodeResponse = z
-  .object({
-    Category: z.string().optional(),
-    Code: z.string(),
-    Description: z.string().min(1).max(50),
-    Name: z.string().min(1).max(50).optional(),
-    TransportationPickUpSchedule: optionCodeTransportationPickUpScheduleResponse.optional(),
-  })
-  .transform((data) => ({
-    category: data['Category'],
-    code: data['Code'],
-    description: data['Description'],
-    name: data['Name'],
-    transportationPickUpSchedule: data['TransportationPickUpSchedule'],
-  }));
+export const locationAttributeOptionCodeResponse: any = z.lazy(() => {
+  return z
+    .object({
+      Category: z.string().optional(),
+      Code: z.string(),
+      Description: z.string().min(1).max(50),
+      Name: z.string().min(1).max(50).optional(),
+      TransportationPickUpSchedule: optionCodeTransportationPickUpScheduleResponse.optional(),
+    })
+    .transform((data) => ({
+      category: data['Category'],
+      code: data['Code'],
+      description: data['Description'],
+      name: data['Name'],
+      transportationPickUpSchedule: data['TransportationPickUpSchedule'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const locationAttributeOptionCodeRequest = z
-  .object({
-    category: z.string().nullish(),
-    code: z.string().nullish(),
-    description: z.string().nullish(),
-    name: z.string().nullish(),
-    transportationPickUpSchedule: optionCodeTransportationPickUpScheduleRequest.nullish(),
-  })
-  .transform((data) => ({
-    Category: data['category'],
-    Code: data['code'],
-    Description: data['description'],
-    Name: data['name'],
-    TransportationPickUpSchedule: data['transportationPickUpSchedule'],
-  }));
+export const locationAttributeOptionCodeRequest: any = z.lazy(() => {
+  return z
+    .object({
+      category: z.string().nullish(),
+      code: z.string().nullish(),
+      description: z.string().nullish(),
+      name: z.string().nullish(),
+      transportationPickUpSchedule: optionCodeTransportationPickUpScheduleRequest.nullish(),
+    })
+    .transform((data) => ({
+      Category: data['category'],
+      Code: data['code'],
+      Description: data['description'],
+      Name: data['name'],
+      TransportationPickUpSchedule: data['transportationPickUpSchedule'],
+    }));
+});

@@ -5,9 +5,11 @@ import { z } from 'zod';
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const dcrAvailabilityUnavailableReason = z.object({
-  code: z.string(),
-  description: z.string(),
+export const dcrAvailabilityUnavailableReason: any = z.lazy(() => {
+  return z.object({
+    code: z.string(),
+    description: z.string(),
+  });
 });
 
 /**
@@ -26,23 +28,25 @@ export type DcrAvailabilityUnavailableReason = z.infer<typeof dcrAvailabilityUna
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const dcrAvailabilityUnavailableReasonResponse = z
-  .object({
-    Code: z.string(),
-    Description: z.string(),
-  })
-  .transform((data) => ({
-    code: data['Code'],
-    description: data['Description'],
-  }));
+export const dcrAvailabilityUnavailableReasonResponse: any = z.lazy(() => {
+  return z
+    .object({
+      Code: z.string(),
+      Description: z.string(),
+    })
+    .transform((data) => ({
+      code: data['Code'],
+      description: data['Description'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const dcrAvailabilityUnavailableReasonRequest = z
-  .object({ code: z.string().nullish(), description: z.string().nullish() })
-  .transform((data) => ({
+export const dcrAvailabilityUnavailableReasonRequest: any = z.lazy(() => {
+  return z.object({ code: z.string().nullish(), description: z.string().nullish() }).transform((data) => ({
     Code: data['code'],
     Description: data['description'],
   }));
+});

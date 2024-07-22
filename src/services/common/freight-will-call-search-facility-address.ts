@@ -5,14 +5,16 @@ import { z } from 'zod';
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const freightWillCallSearchFacilityAddress = z.object({
-  slic: z.string().min(5).max(5).optional(),
-  addressLine: z.array(z.string()).max(2).optional(),
-  city: z.string().min(1).max(50).optional(),
-  postalCodePrimaryLow: z.string().min(1).max(8).optional(),
-  postalCodeExtendedLow: z.string().min(1).max(8).optional(),
-  state: z.string().min(1).max(50).optional(),
-  countryCode: z.string().min(2).max(2),
+export const freightWillCallSearchFacilityAddress: any = z.lazy(() => {
+  return z.object({
+    slic: z.string().min(5).max(5).optional(),
+    addressLine: z.array(z.string()).max(2).optional(),
+    city: z.string().min(1).max(50).optional(),
+    postalCodePrimaryLow: z.string().min(1).max(8).optional(),
+    postalCodeExtendedLow: z.string().min(1).max(8).optional(),
+    state: z.string().min(1).max(50).optional(),
+    countryCode: z.string().min(2).max(2),
+  });
 });
 
 /**
@@ -32,46 +34,50 @@ export type FreightWillCallSearchFacilityAddress = z.infer<typeof freightWillCal
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const freightWillCallSearchFacilityAddressResponse = z
-  .object({
-    SLIC: z.string().min(5).max(5).optional(),
-    AddressLine: z.array(z.string()).max(2).optional(),
-    City: z.string().min(1).max(50).optional(),
-    PostalCodePrimaryLow: z.string().min(1).max(8).optional(),
-    PostalCodeExtendedLow: z.string().min(1).max(8).optional(),
-    State: z.string().min(1).max(50).optional(),
-    CountryCode: z.string().min(2).max(2),
-  })
-  .transform((data) => ({
-    slic: data['SLIC'],
-    addressLine: data['AddressLine'],
-    city: data['City'],
-    postalCodePrimaryLow: data['PostalCodePrimaryLow'],
-    postalCodeExtendedLow: data['PostalCodeExtendedLow'],
-    state: data['State'],
-    countryCode: data['CountryCode'],
-  }));
+export const freightWillCallSearchFacilityAddressResponse: any = z.lazy(() => {
+  return z
+    .object({
+      SLIC: z.string().min(5).max(5).optional(),
+      AddressLine: z.array(z.string()).max(2).optional(),
+      City: z.string().min(1).max(50).optional(),
+      PostalCodePrimaryLow: z.string().min(1).max(8).optional(),
+      PostalCodeExtendedLow: z.string().min(1).max(8).optional(),
+      State: z.string().min(1).max(50).optional(),
+      CountryCode: z.string().min(2).max(2),
+    })
+    .transform((data) => ({
+      slic: data['SLIC'],
+      addressLine: data['AddressLine'],
+      city: data['City'],
+      postalCodePrimaryLow: data['PostalCodePrimaryLow'],
+      postalCodeExtendedLow: data['PostalCodeExtendedLow'],
+      state: data['State'],
+      countryCode: data['CountryCode'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const freightWillCallSearchFacilityAddressRequest = z
-  .object({
-    slic: z.string().nullish(),
-    addressLine: z.array(z.string()).nullish(),
-    city: z.string().nullish(),
-    postalCodePrimaryLow: z.string().nullish(),
-    postalCodeExtendedLow: z.string().nullish(),
-    state: z.string().nullish(),
-    countryCode: z.string().nullish(),
-  })
-  .transform((data) => ({
-    SLIC: data['slic'],
-    AddressLine: data['addressLine'],
-    City: data['city'],
-    PostalCodePrimaryLow: data['postalCodePrimaryLow'],
-    PostalCodeExtendedLow: data['postalCodeExtendedLow'],
-    State: data['state'],
-    CountryCode: data['countryCode'],
-  }));
+export const freightWillCallSearchFacilityAddressRequest: any = z.lazy(() => {
+  return z
+    .object({
+      slic: z.string().nullish(),
+      addressLine: z.array(z.string()).nullish(),
+      city: z.string().nullish(),
+      postalCodePrimaryLow: z.string().nullish(),
+      postalCodeExtendedLow: z.string().nullish(),
+      state: z.string().nullish(),
+      countryCode: z.string().nullish(),
+    })
+    .transform((data) => ({
+      SLIC: data['slic'],
+      AddressLine: data['addressLine'],
+      City: data['city'],
+      PostalCodePrimaryLow: data['postalCodePrimaryLow'],
+      PostalCodeExtendedLow: data['postalCodeExtendedLow'],
+      State: data['state'],
+      CountryCode: data['countryCode'],
+    }));
+});

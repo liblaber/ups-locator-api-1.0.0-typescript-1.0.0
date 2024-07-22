@@ -25,14 +25,16 @@ import {
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const dropLocationAccessPointInformation = z.object({
-  publicAccessPointId: z.string().min(1).max(15).optional(),
-  imageUrl: z.string().min(1).max(255).optional(),
-  businessClassificationList: accessPointInformationBusinessClassificationList.optional(),
-  accessPointStatus: accessPointInformationAccessPointStatus.optional(),
-  facilitySlic: z.string().min(1).max(10).optional(),
-  privateNetworkList: accessPointInformationPrivateNetworkList.optional(),
-  availability: accessPointInformationAvailability.optional(),
+export const dropLocationAccessPointInformation: any = z.lazy(() => {
+  return z.object({
+    publicAccessPointId: z.string().min(1).max(15).optional(),
+    imageUrl: z.string().min(1).max(255).optional(),
+    businessClassificationList: accessPointInformationBusinessClassificationList.optional(),
+    accessPointStatus: accessPointInformationAccessPointStatus.optional(),
+    facilitySlic: z.string().min(1).max(10).optional(),
+    privateNetworkList: accessPointInformationPrivateNetworkList.optional(),
+    availability: accessPointInformationAvailability.optional(),
+  });
 });
 
 /**
@@ -52,46 +54,50 @@ export type DropLocationAccessPointInformation = z.infer<typeof dropLocationAcce
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const dropLocationAccessPointInformationResponse = z
-  .object({
-    PublicAccessPointID: z.string().min(1).max(15).optional(),
-    ImageURL: z.string().min(1).max(255).optional(),
-    BusinessClassificationList: accessPointInformationBusinessClassificationListResponse.optional(),
-    AccessPointStatus: accessPointInformationAccessPointStatusResponse.optional(),
-    FacilitySLIC: z.string().min(1).max(10).optional(),
-    PrivateNetworkList: accessPointInformationPrivateNetworkListResponse.optional(),
-    Availability: accessPointInformationAvailabilityResponse.optional(),
-  })
-  .transform((data) => ({
-    publicAccessPointId: data['PublicAccessPointID'],
-    imageUrl: data['ImageURL'],
-    businessClassificationList: data['BusinessClassificationList'],
-    accessPointStatus: data['AccessPointStatus'],
-    facilitySlic: data['FacilitySLIC'],
-    privateNetworkList: data['PrivateNetworkList'],
-    availability: data['Availability'],
-  }));
+export const dropLocationAccessPointInformationResponse: any = z.lazy(() => {
+  return z
+    .object({
+      PublicAccessPointID: z.string().min(1).max(15).optional(),
+      ImageURL: z.string().min(1).max(255).optional(),
+      BusinessClassificationList: accessPointInformationBusinessClassificationListResponse.optional(),
+      AccessPointStatus: accessPointInformationAccessPointStatusResponse.optional(),
+      FacilitySLIC: z.string().min(1).max(10).optional(),
+      PrivateNetworkList: accessPointInformationPrivateNetworkListResponse.optional(),
+      Availability: accessPointInformationAvailabilityResponse.optional(),
+    })
+    .transform((data) => ({
+      publicAccessPointId: data['PublicAccessPointID'],
+      imageUrl: data['ImageURL'],
+      businessClassificationList: data['BusinessClassificationList'],
+      accessPointStatus: data['AccessPointStatus'],
+      facilitySlic: data['FacilitySLIC'],
+      privateNetworkList: data['PrivateNetworkList'],
+      availability: data['Availability'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const dropLocationAccessPointInformationRequest = z
-  .object({
-    publicAccessPointId: z.string().nullish(),
-    imageUrl: z.string().nullish(),
-    businessClassificationList: accessPointInformationBusinessClassificationListRequest.nullish(),
-    accessPointStatus: accessPointInformationAccessPointStatusRequest.nullish(),
-    facilitySlic: z.string().nullish(),
-    privateNetworkList: accessPointInformationPrivateNetworkListRequest.nullish(),
-    availability: accessPointInformationAvailabilityRequest.nullish(),
-  })
-  .transform((data) => ({
-    PublicAccessPointID: data['publicAccessPointId'],
-    ImageURL: data['imageUrl'],
-    BusinessClassificationList: data['businessClassificationList'],
-    AccessPointStatus: data['accessPointStatus'],
-    FacilitySLIC: data['facilitySlic'],
-    PrivateNetworkList: data['privateNetworkList'],
-    Availability: data['availability'],
-  }));
+export const dropLocationAccessPointInformationRequest: any = z.lazy(() => {
+  return z
+    .object({
+      publicAccessPointId: z.string().nullish(),
+      imageUrl: z.string().nullish(),
+      businessClassificationList: accessPointInformationBusinessClassificationListRequest.nullish(),
+      accessPointStatus: accessPointInformationAccessPointStatusRequest.nullish(),
+      facilitySlic: z.string().nullish(),
+      privateNetworkList: accessPointInformationPrivateNetworkListRequest.nullish(),
+      availability: accessPointInformationAvailabilityRequest.nullish(),
+    })
+    .transform((data) => ({
+      PublicAccessPointID: data['publicAccessPointId'],
+      ImageURL: data['imageUrl'],
+      BusinessClassificationList: data['businessClassificationList'],
+      AccessPointStatus: data['accessPointStatus'],
+      FacilitySLIC: data['facilitySlic'],
+      PrivateNetworkList: data['privateNetworkList'],
+      Availability: data['availability'],
+    }));
+});

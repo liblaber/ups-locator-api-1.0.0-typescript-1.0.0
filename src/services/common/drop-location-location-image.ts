@@ -5,9 +5,11 @@ import { z } from 'zod';
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const dropLocationLocationImage = z.object({
-  secureUrl: z.string().optional(),
-  nonSecureUrl: z.string().optional(),
+export const dropLocationLocationImage: any = z.lazy(() => {
+  return z.object({
+    secureUrl: z.string().optional(),
+    nonSecureUrl: z.string().optional(),
+  });
 });
 
 /**
@@ -22,23 +24,25 @@ export type DropLocationLocationImage = z.infer<typeof dropLocationLocationImage
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const dropLocationLocationImageResponse = z
-  .object({
-    SecureURL: z.string().optional(),
-    NonSecureURL: z.string().optional(),
-  })
-  .transform((data) => ({
-    secureUrl: data['SecureURL'],
-    nonSecureUrl: data['NonSecureURL'],
-  }));
+export const dropLocationLocationImageResponse: any = z.lazy(() => {
+  return z
+    .object({
+      SecureURL: z.string().optional(),
+      NonSecureURL: z.string().optional(),
+    })
+    .transform((data) => ({
+      secureUrl: data['SecureURL'],
+      nonSecureUrl: data['NonSecureURL'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const dropLocationLocationImageRequest = z
-  .object({ secureUrl: z.string().nullish(), nonSecureUrl: z.string().nullish() })
-  .transform((data) => ({
+export const dropLocationLocationImageRequest: any = z.lazy(() => {
+  return z.object({ secureUrl: z.string().nullish(), nonSecureUrl: z.string().nullish() }).transform((data) => ({
     SecureURL: data['secureUrl'],
     NonSecureURL: data['nonSecureUrl'],
   }));
+});

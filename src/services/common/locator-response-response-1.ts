@@ -11,11 +11,13 @@ import { responseError, responseErrorRequest, responseErrorResponse } from './re
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const locatorResponseResponse1 = z.object({
-  transactionReference: responseTransactionReference.optional(),
-  responseStatusCode: z.string().min(1).max(1),
-  responseStatusDescription: z.string().min(1).max(15).optional(),
-  error: responseError.optional(),
+export const locatorResponseResponse1: any = z.lazy(() => {
+  return z.object({
+    transactionReference: responseTransactionReference.optional(),
+    responseStatusCode: z.string().min(1).max(1),
+    responseStatusDescription: z.string().min(1).max(15).optional(),
+    error: responseError.optional(),
+  });
 });
 
 /**
@@ -34,34 +36,38 @@ export type LocatorResponseResponse1 = z.infer<typeof locatorResponseResponse1>;
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const locatorResponseResponse1Response = z
-  .object({
-    TransactionReference: responseTransactionReferenceResponse.optional(),
-    ResponseStatusCode: z.string().min(1).max(1),
-    ResponseStatusDescription: z.string().min(1).max(15).optional(),
-    Error: responseErrorResponse.optional(),
-  })
-  .transform((data) => ({
-    transactionReference: data['TransactionReference'],
-    responseStatusCode: data['ResponseStatusCode'],
-    responseStatusDescription: data['ResponseStatusDescription'],
-    error: data['Error'],
-  }));
+export const locatorResponseResponse1Response: any = z.lazy(() => {
+  return z
+    .object({
+      TransactionReference: responseTransactionReferenceResponse.optional(),
+      ResponseStatusCode: z.string().min(1).max(1),
+      ResponseStatusDescription: z.string().min(1).max(15).optional(),
+      Error: responseErrorResponse.optional(),
+    })
+    .transform((data) => ({
+      transactionReference: data['TransactionReference'],
+      responseStatusCode: data['ResponseStatusCode'],
+      responseStatusDescription: data['ResponseStatusDescription'],
+      error: data['Error'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const locatorResponseResponse1Request = z
-  .object({
-    transactionReference: responseTransactionReferenceRequest.nullish(),
-    responseStatusCode: z.string().nullish(),
-    responseStatusDescription: z.string().nullish(),
-    error: responseErrorRequest.nullish(),
-  })
-  .transform((data) => ({
-    TransactionReference: data['transactionReference'],
-    ResponseStatusCode: data['responseStatusCode'],
-    ResponseStatusDescription: data['responseStatusDescription'],
-    Error: data['error'],
-  }));
+export const locatorResponseResponse1Request: any = z.lazy(() => {
+  return z
+    .object({
+      transactionReference: responseTransactionReferenceRequest.nullish(),
+      responseStatusCode: z.string().nullish(),
+      responseStatusDescription: z.string().nullish(),
+      error: responseErrorRequest.nullish(),
+    })
+    .transform((data) => ({
+      TransactionReference: data['transactionReference'],
+      ResponseStatusCode: data['responseStatusCode'],
+      ResponseStatusDescription: data['responseStatusDescription'],
+      Error: data['error'],
+    }));
+});

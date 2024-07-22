@@ -15,10 +15,12 @@ import {
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const locationSearchCriteriaServiceSearch = z.object({
-  time: z.string().min(4).max(6).optional(),
-  serviceCode: z.array(serviceSearchServiceCode).optional(),
-  serviceOptionCode: z.array(serviceSearchServiceOptionCode).optional(),
+export const locationSearchCriteriaServiceSearch: any = z.lazy(() => {
+  return z.object({
+    time: z.string().min(4).max(6).optional(),
+    serviceCode: z.array(serviceSearchServiceCode).optional(),
+    serviceOptionCode: z.array(serviceSearchServiceOptionCode).optional(),
+  });
 });
 
 /**
@@ -34,30 +36,34 @@ export type LocationSearchCriteriaServiceSearch = z.infer<typeof locationSearchC
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const locationSearchCriteriaServiceSearchResponse = z
-  .object({
-    Time: z.string().min(4).max(6).optional(),
-    ServiceCode: z.array(serviceSearchServiceCodeResponse).optional(),
-    ServiceOptionCode: z.array(serviceSearchServiceOptionCodeResponse).optional(),
-  })
-  .transform((data) => ({
-    time: data['Time'],
-    serviceCode: data['ServiceCode'],
-    serviceOptionCode: data['ServiceOptionCode'],
-  }));
+export const locationSearchCriteriaServiceSearchResponse: any = z.lazy(() => {
+  return z
+    .object({
+      Time: z.string().min(4).max(6).optional(),
+      ServiceCode: z.array(serviceSearchServiceCodeResponse).optional(),
+      ServiceOptionCode: z.array(serviceSearchServiceOptionCodeResponse).optional(),
+    })
+    .transform((data) => ({
+      time: data['Time'],
+      serviceCode: data['ServiceCode'],
+      serviceOptionCode: data['ServiceOptionCode'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const locationSearchCriteriaServiceSearchRequest = z
-  .object({
-    time: z.string().nullish(),
-    serviceCode: z.array(serviceSearchServiceCodeRequest).nullish(),
-    serviceOptionCode: z.array(serviceSearchServiceOptionCodeRequest).nullish(),
-  })
-  .transform((data) => ({
-    Time: data['time'],
-    ServiceCode: data['serviceCode'],
-    ServiceOptionCode: data['serviceOptionCode'],
-  }));
+export const locationSearchCriteriaServiceSearchRequest: any = z.lazy(() => {
+  return z
+    .object({
+      time: z.string().nullish(),
+      serviceCode: z.array(serviceSearchServiceCodeRequest).nullish(),
+      serviceOptionCode: z.array(serviceSearchServiceOptionCodeRequest).nullish(),
+    })
+    .transform((data) => ({
+      Time: data['time'],
+      ServiceCode: data['serviceCode'],
+      ServiceOptionCode: data['serviceOptionCode'],
+    }));
+});

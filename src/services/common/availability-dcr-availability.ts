@@ -10,9 +10,11 @@ import {
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const availabilityDcrAvailability = z.object({
-  availableIndicator: z.string().optional(),
-  unavailableReason: dcrAvailabilityUnavailableReason.optional(),
+export const availabilityDcrAvailability: any = z.lazy(() => {
+  return z.object({
+    availableIndicator: z.string().optional(),
+    unavailableReason: dcrAvailabilityUnavailableReason.optional(),
+  });
 });
 
 /**
@@ -27,26 +29,30 @@ export type AvailabilityDcrAvailability = z.infer<typeof availabilityDcrAvailabi
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const availabilityDcrAvailabilityResponse = z
-  .object({
-    AvailableIndicator: z.string().optional(),
-    UnavailableReason: dcrAvailabilityUnavailableReasonResponse.optional(),
-  })
-  .transform((data) => ({
-    availableIndicator: data['AvailableIndicator'],
-    unavailableReason: data['UnavailableReason'],
-  }));
+export const availabilityDcrAvailabilityResponse: any = z.lazy(() => {
+  return z
+    .object({
+      AvailableIndicator: z.string().optional(),
+      UnavailableReason: dcrAvailabilityUnavailableReasonResponse.optional(),
+    })
+    .transform((data) => ({
+      availableIndicator: data['AvailableIndicator'],
+      unavailableReason: data['UnavailableReason'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const availabilityDcrAvailabilityRequest = z
-  .object({
-    availableIndicator: z.string().nullish(),
-    unavailableReason: dcrAvailabilityUnavailableReasonRequest.nullish(),
-  })
-  .transform((data) => ({
-    AvailableIndicator: data['availableIndicator'],
-    UnavailableReason: data['unavailableReason'],
-  }));
+export const availabilityDcrAvailabilityRequest: any = z.lazy(() => {
+  return z
+    .object({
+      availableIndicator: z.string().nullish(),
+      unavailableReason: dcrAvailabilityUnavailableReasonRequest.nullish(),
+    })
+    .transform((data) => ({
+      AvailableIndicator: data['availableIndicator'],
+      UnavailableReason: data['unavailableReason'],
+    }));
+});

@@ -5,9 +5,11 @@ import { z } from 'zod';
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const dropLocationIvr = z.object({
-  phraseId: z.string().min(1).max(30),
-  textToSpeechIndicator: z.string().optional(),
+export const dropLocationIvr: any = z.lazy(() => {
+  return z.object({
+    phraseId: z.string().min(1).max(30),
+    textToSpeechIndicator: z.string().optional(),
+  });
 });
 
 /**
@@ -27,23 +29,27 @@ export type DropLocationIvr = z.infer<typeof dropLocationIvr>;
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const dropLocationIvrResponse = z
-  .object({
-    PhraseID: z.string().min(1).max(30),
-    TextToSpeechIndicator: z.string().optional(),
-  })
-  .transform((data) => ({
-    phraseId: data['PhraseID'],
-    textToSpeechIndicator: data['TextToSpeechIndicator'],
-  }));
+export const dropLocationIvrResponse: any = z.lazy(() => {
+  return z
+    .object({
+      PhraseID: z.string().min(1).max(30),
+      TextToSpeechIndicator: z.string().optional(),
+    })
+    .transform((data) => ({
+      phraseId: data['PhraseID'],
+      textToSpeechIndicator: data['TextToSpeechIndicator'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const dropLocationIvrRequest = z
-  .object({ phraseId: z.string().nullish(), textToSpeechIndicator: z.string().nullish() })
-  .transform((data) => ({
-    PhraseID: data['phraseId'],
-    TextToSpeechIndicator: data['textToSpeechIndicator'],
-  }));
+export const dropLocationIvrRequest: any = z.lazy(() => {
+  return z
+    .object({ phraseId: z.string().nullish(), textToSpeechIndicator: z.string().nullish() })
+    .transform((data) => ({
+      PhraseID: data['phraseId'],
+      TextToSpeechIndicator: data['textToSpeechIndicator'],
+    }));
+});

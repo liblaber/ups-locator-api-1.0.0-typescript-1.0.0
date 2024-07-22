@@ -30,15 +30,17 @@ import {
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const locatorRequestLocationSearchCriteria = z.object({
-  searchOption: z.array(locationSearchCriteriaSearchOption).optional(),
-  maximumListSize: z.string().min(1).max(2).optional(),
-  searchRadius: z.string().min(1).max(3).optional(),
-  serviceSearch: locationSearchCriteriaServiceSearch.optional(),
-  freightWillCallSearch: locationSearchCriteriaFreightWillCallSearch.optional(),
-  accessPointSearch: locationSearchCriteriaAccessPointSearch.optional(),
-  openTimeCriteria: locationSearchCriteriaOpenTimeCriteria.optional(),
-  brexitFilter: z.string().min(1).max(10).optional(),
+export const locatorRequestLocationSearchCriteria: any = z.lazy(() => {
+  return z.object({
+    searchOption: z.array(locationSearchCriteriaSearchOption).optional(),
+    maximumListSize: z.string().min(1).max(2).optional(),
+    searchRadius: z.string().min(1).max(3).optional(),
+    serviceSearch: locationSearchCriteriaServiceSearch.optional(),
+    freightWillCallSearch: locationSearchCriteriaFreightWillCallSearch.optional(),
+    accessPointSearch: locationSearchCriteriaAccessPointSearch.optional(),
+    openTimeCriteria: locationSearchCriteriaOpenTimeCriteria.optional(),
+    brexitFilter: z.string().min(1).max(10).optional(),
+  });
 });
 
 /**
@@ -66,50 +68,54 @@ export type LocatorRequestLocationSearchCriteria = z.infer<typeof locatorRequest
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const locatorRequestLocationSearchCriteriaResponse = z
-  .object({
-    SearchOption: z.array(locationSearchCriteriaSearchOptionResponse).optional(),
-    MaximumListSize: z.string().min(1).max(2).optional(),
-    SearchRadius: z.string().min(1).max(3).optional(),
-    ServiceSearch: locationSearchCriteriaServiceSearchResponse.optional(),
-    FreightWillCallSearch: locationSearchCriteriaFreightWillCallSearchResponse.optional(),
-    AccessPointSearch: locationSearchCriteriaAccessPointSearchResponse.optional(),
-    OpenTimeCriteria: locationSearchCriteriaOpenTimeCriteriaResponse.optional(),
-    BrexitFilter: z.string().min(1).max(10).optional(),
-  })
-  .transform((data) => ({
-    searchOption: data['SearchOption'],
-    maximumListSize: data['MaximumListSize'],
-    searchRadius: data['SearchRadius'],
-    serviceSearch: data['ServiceSearch'],
-    freightWillCallSearch: data['FreightWillCallSearch'],
-    accessPointSearch: data['AccessPointSearch'],
-    openTimeCriteria: data['OpenTimeCriteria'],
-    brexitFilter: data['BrexitFilter'],
-  }));
+export const locatorRequestLocationSearchCriteriaResponse: any = z.lazy(() => {
+  return z
+    .object({
+      SearchOption: z.array(locationSearchCriteriaSearchOptionResponse).optional(),
+      MaximumListSize: z.string().min(1).max(2).optional(),
+      SearchRadius: z.string().min(1).max(3).optional(),
+      ServiceSearch: locationSearchCriteriaServiceSearchResponse.optional(),
+      FreightWillCallSearch: locationSearchCriteriaFreightWillCallSearchResponse.optional(),
+      AccessPointSearch: locationSearchCriteriaAccessPointSearchResponse.optional(),
+      OpenTimeCriteria: locationSearchCriteriaOpenTimeCriteriaResponse.optional(),
+      BrexitFilter: z.string().min(1).max(10).optional(),
+    })
+    .transform((data) => ({
+      searchOption: data['SearchOption'],
+      maximumListSize: data['MaximumListSize'],
+      searchRadius: data['SearchRadius'],
+      serviceSearch: data['ServiceSearch'],
+      freightWillCallSearch: data['FreightWillCallSearch'],
+      accessPointSearch: data['AccessPointSearch'],
+      openTimeCriteria: data['OpenTimeCriteria'],
+      brexitFilter: data['BrexitFilter'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const locatorRequestLocationSearchCriteriaRequest = z
-  .object({
-    searchOption: z.array(locationSearchCriteriaSearchOptionRequest).nullish(),
-    maximumListSize: z.string().nullish(),
-    searchRadius: z.string().nullish(),
-    serviceSearch: locationSearchCriteriaServiceSearchRequest.nullish(),
-    freightWillCallSearch: locationSearchCriteriaFreightWillCallSearchRequest.nullish(),
-    accessPointSearch: locationSearchCriteriaAccessPointSearchRequest.nullish(),
-    openTimeCriteria: locationSearchCriteriaOpenTimeCriteriaRequest.nullish(),
-    brexitFilter: z.string().nullish(),
-  })
-  .transform((data) => ({
-    SearchOption: data['searchOption'],
-    MaximumListSize: data['maximumListSize'],
-    SearchRadius: data['searchRadius'],
-    ServiceSearch: data['serviceSearch'],
-    FreightWillCallSearch: data['freightWillCallSearch'],
-    AccessPointSearch: data['accessPointSearch'],
-    OpenTimeCriteria: data['openTimeCriteria'],
-    BrexitFilter: data['brexitFilter'],
-  }));
+export const locatorRequestLocationSearchCriteriaRequest: any = z.lazy(() => {
+  return z
+    .object({
+      searchOption: z.array(locationSearchCriteriaSearchOptionRequest).nullish(),
+      maximumListSize: z.string().nullish(),
+      searchRadius: z.string().nullish(),
+      serviceSearch: locationSearchCriteriaServiceSearchRequest.nullish(),
+      freightWillCallSearch: locationSearchCriteriaFreightWillCallSearchRequest.nullish(),
+      accessPointSearch: locationSearchCriteriaAccessPointSearchRequest.nullish(),
+      openTimeCriteria: locationSearchCriteriaOpenTimeCriteriaRequest.nullish(),
+      brexitFilter: z.string().nullish(),
+    })
+    .transform((data) => ({
+      SearchOption: data['searchOption'],
+      MaximumListSize: data['maximumListSize'],
+      SearchRadius: data['searchRadius'],
+      ServiceSearch: data['serviceSearch'],
+      FreightWillCallSearch: data['freightWillCallSearch'],
+      AccessPointSearch: data['accessPointSearch'],
+      OpenTimeCriteria: data['openTimeCriteria'],
+      BrexitFilter: data['brexitFilter'],
+    }));
+});

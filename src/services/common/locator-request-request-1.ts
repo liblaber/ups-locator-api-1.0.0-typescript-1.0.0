@@ -10,10 +10,12 @@ import {
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const locatorRequestRequest1 = z.object({
-  transactionReference: requestTransactionReference.optional(),
-  requestAction: z.string().min(13).max(13),
-  requestOption: z.string().min(1).max(4),
+export const locatorRequestRequest1: any = z.lazy(() => {
+  return z.object({
+    transactionReference: requestTransactionReference.optional(),
+    requestAction: z.string().min(13).max(13),
+    requestOption: z.string().min(1).max(4),
+  });
 });
 
 /**
@@ -40,30 +42,34 @@ export type LocatorRequestRequest1 = z.infer<typeof locatorRequestRequest1>;
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const locatorRequestRequest1Response = z
-  .object({
-    TransactionReference: requestTransactionReferenceResponse.optional(),
-    RequestAction: z.string().min(13).max(13),
-    RequestOption: z.string().min(1).max(4),
-  })
-  .transform((data) => ({
-    transactionReference: data['TransactionReference'],
-    requestAction: data['RequestAction'],
-    requestOption: data['RequestOption'],
-  }));
+export const locatorRequestRequest1Response: any = z.lazy(() => {
+  return z
+    .object({
+      TransactionReference: requestTransactionReferenceResponse.optional(),
+      RequestAction: z.string().min(13).max(13),
+      RequestOption: z.string().min(1).max(4),
+    })
+    .transform((data) => ({
+      transactionReference: data['TransactionReference'],
+      requestAction: data['RequestAction'],
+      requestOption: data['RequestOption'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const locatorRequestRequest1Request = z
-  .object({
-    transactionReference: requestTransactionReferenceRequest.nullish(),
-    requestAction: z.string().nullish(),
-    requestOption: z.string().nullish(),
-  })
-  .transform((data) => ({
-    TransactionReference: data['transactionReference'],
-    RequestAction: data['requestAction'],
-    RequestOption: data['requestOption'],
-  }));
+export const locatorRequestRequest1Request: any = z.lazy(() => {
+  return z
+    .object({
+      transactionReference: requestTransactionReferenceRequest.nullish(),
+      requestAction: z.string().nullish(),
+      requestOption: z.string().nullish(),
+    })
+    .transform((data) => ({
+      TransactionReference: data['transactionReference'],
+      RequestAction: data['requestAction'],
+      RequestOption: data['requestOption'],
+    }));
+});

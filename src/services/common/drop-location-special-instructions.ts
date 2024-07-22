@@ -5,8 +5,10 @@ import { z } from 'zod';
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const dropLocationSpecialInstructions = z.object({
-  segment: z.string(),
+export const dropLocationSpecialInstructions: any = z.lazy(() => {
+  return z.object({
+    segment: z.string(),
+  });
 });
 
 /**
@@ -20,18 +22,22 @@ export type DropLocationSpecialInstructions = z.infer<typeof dropLocationSpecial
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const dropLocationSpecialInstructionsResponse = z
-  .object({
-    Segment: z.string(),
-  })
-  .transform((data) => ({
-    segment: data['Segment'],
-  }));
+export const dropLocationSpecialInstructionsResponse: any = z.lazy(() => {
+  return z
+    .object({
+      Segment: z.string(),
+    })
+    .transform((data) => ({
+      segment: data['Segment'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const dropLocationSpecialInstructionsRequest = z.object({ segment: z.string().nullish() }).transform((data) => ({
-  Segment: data['segment'],
-}));
+export const dropLocationSpecialInstructionsRequest: any = z.lazy(() => {
+  return z.object({ segment: z.string().nullish() }).transform((data) => ({
+    Segment: data['segment'],
+  }));
+});

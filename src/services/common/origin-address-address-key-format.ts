@@ -5,18 +5,20 @@ import { z } from 'zod';
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const originAddressAddressKeyFormat = z.object({
-  consigneeName: z.string().min(1).max(40).optional(),
-  addressLine: z.string().min(1).max(100),
-  addressLine2: z.string().min(1).max(64).optional(),
-  addressLine3: z.string().min(1).max(64).optional(),
-  politicalDivision3: z.string().min(1).max(35).optional(),
-  politicalDivision2: z.string().min(1).max(50),
-  politicalDivision1: z.string().min(1).max(50),
-  postcodePrimaryLow: z.string().min(1).max(10),
-  postcodeExtendedLow: z.string().min(1).max(10).optional(),
-  countryCode: z.string().min(1).max(2),
-  singleLineAddress: z.string().optional(),
+export const originAddressAddressKeyFormat: any = z.lazy(() => {
+  return z.object({
+    consigneeName: z.string().min(1).max(40).optional(),
+    addressLine: z.string().min(1).max(100),
+    addressLine2: z.string().min(1).max(64).optional(),
+    addressLine3: z.string().min(1).max(64).optional(),
+    politicalDivision3: z.string().min(1).max(35).optional(),
+    politicalDivision2: z.string().min(1).max(50),
+    politicalDivision1: z.string().min(1).max(50),
+    postcodePrimaryLow: z.string().min(1).max(10),
+    postcodeExtendedLow: z.string().min(1).max(10).optional(),
+    countryCode: z.string().min(1).max(2),
+    singleLineAddress: z.string().optional(),
+  });
 });
 
 /**
@@ -50,62 +52,66 @@ export type OriginAddressAddressKeyFormat = z.infer<typeof originAddressAddressK
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const originAddressAddressKeyFormatResponse = z
-  .object({
-    ConsigneeName: z.string().min(1).max(40).optional(),
-    AddressLine: z.string().min(1).max(100),
-    AddressLine2: z.string().min(1).max(64).optional(),
-    AddressLine3: z.string().min(1).max(64).optional(),
-    PoliticalDivision3: z.string().min(1).max(35).optional(),
-    PoliticalDivision2: z.string().min(1).max(50),
-    PoliticalDivision1: z.string().min(1).max(50),
-    PostcodePrimaryLow: z.string().min(1).max(10),
-    PostcodeExtendedLow: z.string().min(1).max(10).optional(),
-    CountryCode: z.string().min(1).max(2),
-    SingleLineAddress: z.string().optional(),
-  })
-  .transform((data) => ({
-    consigneeName: data['ConsigneeName'],
-    addressLine: data['AddressLine'],
-    addressLine2: data['AddressLine2'],
-    addressLine3: data['AddressLine3'],
-    politicalDivision3: data['PoliticalDivision3'],
-    politicalDivision2: data['PoliticalDivision2'],
-    politicalDivision1: data['PoliticalDivision1'],
-    postcodePrimaryLow: data['PostcodePrimaryLow'],
-    postcodeExtendedLow: data['PostcodeExtendedLow'],
-    countryCode: data['CountryCode'],
-    singleLineAddress: data['SingleLineAddress'],
-  }));
+export const originAddressAddressKeyFormatResponse: any = z.lazy(() => {
+  return z
+    .object({
+      ConsigneeName: z.string().min(1).max(40).optional(),
+      AddressLine: z.string().min(1).max(100),
+      AddressLine2: z.string().min(1).max(64).optional(),
+      AddressLine3: z.string().min(1).max(64).optional(),
+      PoliticalDivision3: z.string().min(1).max(35).optional(),
+      PoliticalDivision2: z.string().min(1).max(50),
+      PoliticalDivision1: z.string().min(1).max(50),
+      PostcodePrimaryLow: z.string().min(1).max(10),
+      PostcodeExtendedLow: z.string().min(1).max(10).optional(),
+      CountryCode: z.string().min(1).max(2),
+      SingleLineAddress: z.string().optional(),
+    })
+    .transform((data) => ({
+      consigneeName: data['ConsigneeName'],
+      addressLine: data['AddressLine'],
+      addressLine2: data['AddressLine2'],
+      addressLine3: data['AddressLine3'],
+      politicalDivision3: data['PoliticalDivision3'],
+      politicalDivision2: data['PoliticalDivision2'],
+      politicalDivision1: data['PoliticalDivision1'],
+      postcodePrimaryLow: data['PostcodePrimaryLow'],
+      postcodeExtendedLow: data['PostcodeExtendedLow'],
+      countryCode: data['CountryCode'],
+      singleLineAddress: data['SingleLineAddress'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const originAddressAddressKeyFormatRequest = z
-  .object({
-    consigneeName: z.string().nullish(),
-    addressLine: z.string().nullish(),
-    addressLine2: z.string().nullish(),
-    addressLine3: z.string().nullish(),
-    politicalDivision3: z.string().nullish(),
-    politicalDivision2: z.string().nullish(),
-    politicalDivision1: z.string().nullish(),
-    postcodePrimaryLow: z.string().nullish(),
-    postcodeExtendedLow: z.string().nullish(),
-    countryCode: z.string().nullish(),
-    singleLineAddress: z.string().nullish(),
-  })
-  .transform((data) => ({
-    ConsigneeName: data['consigneeName'],
-    AddressLine: data['addressLine'],
-    AddressLine2: data['addressLine2'],
-    AddressLine3: data['addressLine3'],
-    PoliticalDivision3: data['politicalDivision3'],
-    PoliticalDivision2: data['politicalDivision2'],
-    PoliticalDivision1: data['politicalDivision1'],
-    PostcodePrimaryLow: data['postcodePrimaryLow'],
-    PostcodeExtendedLow: data['postcodeExtendedLow'],
-    CountryCode: data['countryCode'],
-    SingleLineAddress: data['singleLineAddress'],
-  }));
+export const originAddressAddressKeyFormatRequest: any = z.lazy(() => {
+  return z
+    .object({
+      consigneeName: z.string().nullish(),
+      addressLine: z.string().nullish(),
+      addressLine2: z.string().nullish(),
+      addressLine3: z.string().nullish(),
+      politicalDivision3: z.string().nullish(),
+      politicalDivision2: z.string().nullish(),
+      politicalDivision1: z.string().nullish(),
+      postcodePrimaryLow: z.string().nullish(),
+      postcodeExtendedLow: z.string().nullish(),
+      countryCode: z.string().nullish(),
+      singleLineAddress: z.string().nullish(),
+    })
+    .transform((data) => ({
+      ConsigneeName: data['consigneeName'],
+      AddressLine: data['addressLine'],
+      AddressLine2: data['addressLine2'],
+      AddressLine3: data['addressLine3'],
+      PoliticalDivision3: data['politicalDivision3'],
+      PoliticalDivision2: data['politicalDivision2'],
+      PoliticalDivision1: data['politicalDivision1'],
+      PostcodePrimaryLow: data['postcodePrimaryLow'],
+      PostcodeExtendedLow: data['postcodeExtendedLow'],
+      CountryCode: data['countryCode'],
+      SingleLineAddress: data['singleLineAddress'],
+    }));
+});

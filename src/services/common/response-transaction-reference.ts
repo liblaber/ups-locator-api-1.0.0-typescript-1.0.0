@@ -5,9 +5,11 @@ import { z } from 'zod';
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const responseTransactionReference = z.object({
-  customerContext: z.string().max(512).optional(),
-  xpciVersion: z.string().min(6).max(6).optional(),
+export const responseTransactionReference: any = z.lazy(() => {
+  return z.object({
+    customerContext: z.string().max(512).optional(),
+    xpciVersion: z.string().min(6).max(6).optional(),
+  });
 });
 
 /**
@@ -23,23 +25,25 @@ export type ResponseTransactionReference = z.infer<typeof responseTransactionRef
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const responseTransactionReferenceResponse = z
-  .object({
-    CustomerContext: z.string().max(512).optional(),
-    XpciVersion: z.string().min(6).max(6).optional(),
-  })
-  .transform((data) => ({
-    customerContext: data['CustomerContext'],
-    xpciVersion: data['XpciVersion'],
-  }));
+export const responseTransactionReferenceResponse: any = z.lazy(() => {
+  return z
+    .object({
+      CustomerContext: z.string().max(512).optional(),
+      XpciVersion: z.string().min(6).max(6).optional(),
+    })
+    .transform((data) => ({
+      customerContext: data['CustomerContext'],
+      xpciVersion: data['XpciVersion'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const responseTransactionReferenceRequest = z
-  .object({ customerContext: z.string().nullish(), xpciVersion: z.string().nullish() })
-  .transform((data) => ({
+export const responseTransactionReferenceRequest: any = z.lazy(() => {
+  return z.object({ customerContext: z.string().nullish(), xpciVersion: z.string().nullish() }).transform((data) => ({
     CustomerContext: data['customerContext'],
     XpciVersion: data['xpciVersion'],
   }));
+});

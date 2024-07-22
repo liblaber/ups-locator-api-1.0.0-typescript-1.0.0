@@ -10,8 +10,10 @@ import {
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const includeCriteriaServiceOfferingList = z.object({
-  serviceOffering: z.array(serviceOfferingListServiceOffering),
+export const includeCriteriaServiceOfferingList: any = z.lazy(() => {
+  return z.object({
+    serviceOffering: z.array(serviceOfferingListServiceOffering),
+  });
 });
 
 /**
@@ -25,20 +27,24 @@ export type IncludeCriteriaServiceOfferingList = z.infer<typeof includeCriteriaS
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const includeCriteriaServiceOfferingListResponse = z
-  .object({
-    ServiceOffering: z.array(serviceOfferingListServiceOfferingResponse),
-  })
-  .transform((data) => ({
-    serviceOffering: data['ServiceOffering'],
-  }));
+export const includeCriteriaServiceOfferingListResponse: any = z.lazy(() => {
+  return z
+    .object({
+      ServiceOffering: z.array(serviceOfferingListServiceOfferingResponse),
+    })
+    .transform((data) => ({
+      serviceOffering: data['ServiceOffering'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const includeCriteriaServiceOfferingListRequest = z
-  .object({ serviceOffering: z.array(serviceOfferingListServiceOfferingRequest).nullish() })
-  .transform((data) => ({
-    ServiceOffering: data['serviceOffering'],
-  }));
+export const includeCriteriaServiceOfferingListRequest: any = z.lazy(() => {
+  return z
+    .object({ serviceOffering: z.array(serviceOfferingListServiceOfferingRequest).nullish() })
+    .transform((data) => ({
+      ServiceOffering: data['serviceOffering'],
+    }));
+});

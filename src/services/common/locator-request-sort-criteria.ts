@@ -5,8 +5,10 @@ import { z } from 'zod';
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const locatorRequestSortCriteria = z.object({
-  sortType: z.string().min(1).max(2).optional(),
+export const locatorRequestSortCriteria: any = z.lazy(() => {
+  return z.object({
+    sortType: z.string().min(1).max(2).optional(),
+  });
 });
 
 /**
@@ -25,18 +27,22 @@ export type LocatorRequestSortCriteria = z.infer<typeof locatorRequestSortCriter
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const locatorRequestSortCriteriaResponse = z
-  .object({
-    SortType: z.string().min(1).max(2).optional(),
-  })
-  .transform((data) => ({
-    sortType: data['SortType'],
-  }));
+export const locatorRequestSortCriteriaResponse: any = z.lazy(() => {
+  return z
+    .object({
+      SortType: z.string().min(1).max(2).optional(),
+    })
+    .transform((data) => ({
+      sortType: data['SortType'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const locatorRequestSortCriteriaRequest = z.object({ sortType: z.string().nullish() }).transform((data) => ({
-  SortType: data['sortType'],
-}));
+export const locatorRequestSortCriteriaRequest: any = z.lazy(() => {
+  return z.object({ sortType: z.string().nullish() }).transform((data) => ({
+    SortType: data['sortType'],
+  }));
+});

@@ -5,9 +5,11 @@ import { z } from 'zod';
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const additionalCommentsCommentType = z.object({
-  code: z.string().min(2).max(2),
-  text: z.string().min(1).max(255),
+export const additionalCommentsCommentType: any = z.lazy(() => {
+  return z.object({
+    code: z.string().min(2).max(2),
+    text: z.string().min(1).max(255),
+  });
 });
 
 /**
@@ -22,23 +24,25 @@ export type AdditionalCommentsCommentType = z.infer<typeof additionalCommentsCom
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const additionalCommentsCommentTypeResponse = z
-  .object({
-    Code: z.string().min(2).max(2),
-    Text: z.string().min(1).max(255),
-  })
-  .transform((data) => ({
-    code: data['Code'],
-    text: data['Text'],
-  }));
+export const additionalCommentsCommentTypeResponse: any = z.lazy(() => {
+  return z
+    .object({
+      Code: z.string().min(2).max(2),
+      Text: z.string().min(1).max(255),
+    })
+    .transform((data) => ({
+      code: data['Code'],
+      text: data['Text'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const additionalCommentsCommentTypeRequest = z
-  .object({ code: z.string().nullish(), text: z.string().nullish() })
-  .transform((data) => ({
+export const additionalCommentsCommentTypeRequest: any = z.lazy(() => {
+  return z.object({ code: z.string().nullish(), text: z.string().nullish() }).transform((data) => ({
     Code: data['code'],
     Text: data['text'],
   }));
+});

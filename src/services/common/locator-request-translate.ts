@@ -5,8 +5,10 @@ import { z } from 'zod';
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const locatorRequestTranslate = z.object({
-  locale: z.string().min(5).max(5).optional(),
+export const locatorRequestTranslate: any = z.lazy(() => {
+  return z.object({
+    locale: z.string().min(5).max(5).optional(),
+  });
 });
 
 /**
@@ -22,18 +24,22 @@ export type LocatorRequestTranslate = z.infer<typeof locatorRequestTranslate>;
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const locatorRequestTranslateResponse = z
-  .object({
-    Locale: z.string().min(5).max(5).optional(),
-  })
-  .transform((data) => ({
-    locale: data['Locale'],
-  }));
+export const locatorRequestTranslateResponse: any = z.lazy(() => {
+  return z
+    .object({
+      Locale: z.string().min(5).max(5).optional(),
+    })
+    .transform((data) => ({
+      locale: data['Locale'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const locatorRequestTranslateRequest = z.object({ locale: z.string().nullish() }).transform((data) => ({
-  Locale: data['locale'],
-}));
+export const locatorRequestTranslateRequest: any = z.lazy(() => {
+  return z.object({ locale: z.string().nullish() }).transform((data) => ({
+    Locale: data['locale'],
+  }));
+});

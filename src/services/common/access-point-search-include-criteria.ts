@@ -20,10 +20,12 @@ import {
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const accessPointSearchIncludeCriteria = z.object({
-  merchantAccountNumberList: includeCriteriaMerchantAccountNumberList.optional(),
-  searchFilter: includeCriteriaSearchFilter.optional(),
-  serviceOfferingList: includeCriteriaServiceOfferingList.optional(),
+export const accessPointSearchIncludeCriteria: any = z.lazy(() => {
+  return z.object({
+    merchantAccountNumberList: includeCriteriaMerchantAccountNumberList.optional(),
+    searchFilter: includeCriteriaSearchFilter.optional(),
+    serviceOfferingList: includeCriteriaServiceOfferingList.optional(),
+  });
 });
 
 /**
@@ -39,30 +41,34 @@ export type AccessPointSearchIncludeCriteria = z.infer<typeof accessPointSearchI
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const accessPointSearchIncludeCriteriaResponse = z
-  .object({
-    MerchantAccountNumberList: includeCriteriaMerchantAccountNumberListResponse.optional(),
-    SearchFilter: includeCriteriaSearchFilterResponse.optional(),
-    ServiceOfferingList: includeCriteriaServiceOfferingListResponse.optional(),
-  })
-  .transform((data) => ({
-    merchantAccountNumberList: data['MerchantAccountNumberList'],
-    searchFilter: data['SearchFilter'],
-    serviceOfferingList: data['ServiceOfferingList'],
-  }));
+export const accessPointSearchIncludeCriteriaResponse: any = z.lazy(() => {
+  return z
+    .object({
+      MerchantAccountNumberList: includeCriteriaMerchantAccountNumberListResponse.optional(),
+      SearchFilter: includeCriteriaSearchFilterResponse.optional(),
+      ServiceOfferingList: includeCriteriaServiceOfferingListResponse.optional(),
+    })
+    .transform((data) => ({
+      merchantAccountNumberList: data['MerchantAccountNumberList'],
+      searchFilter: data['SearchFilter'],
+      serviceOfferingList: data['ServiceOfferingList'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const accessPointSearchIncludeCriteriaRequest = z
-  .object({
-    merchantAccountNumberList: includeCriteriaMerchantAccountNumberListRequest.nullish(),
-    searchFilter: includeCriteriaSearchFilterRequest.nullish(),
-    serviceOfferingList: includeCriteriaServiceOfferingListRequest.nullish(),
-  })
-  .transform((data) => ({
-    MerchantAccountNumberList: data['merchantAccountNumberList'],
-    SearchFilter: data['searchFilter'],
-    ServiceOfferingList: data['serviceOfferingList'],
-  }));
+export const accessPointSearchIncludeCriteriaRequest: any = z.lazy(() => {
+  return z
+    .object({
+      merchantAccountNumberList: includeCriteriaMerchantAccountNumberListRequest.nullish(),
+      searchFilter: includeCriteriaSearchFilterRequest.nullish(),
+      serviceOfferingList: includeCriteriaServiceOfferingListRequest.nullish(),
+    })
+    .transform((data) => ({
+      MerchantAccountNumberList: data['merchantAccountNumberList'],
+      SearchFilter: data['searchFilter'],
+      ServiceOfferingList: data['serviceOfferingList'],
+    }));
+});

@@ -5,9 +5,11 @@ import { z } from 'zod';
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const dropLocationSortCode = z.object({
-  hubSortCode: z.string().min(2).max(2).optional(),
-  freightSortFacilityCode: z.string().min(3).max(3).optional(),
+export const dropLocationSortCode: any = z.lazy(() => {
+  return z.object({
+    hubSortCode: z.string().min(2).max(2).optional(),
+    freightSortFacilityCode: z.string().min(3).max(3).optional(),
+  });
 });
 
 /**
@@ -22,23 +24,27 @@ export type DropLocationSortCode = z.infer<typeof dropLocationSortCode>;
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const dropLocationSortCodeResponse = z
-  .object({
-    HubSortCode: z.string().min(2).max(2).optional(),
-    FreightSortFacilityCode: z.string().min(3).max(3).optional(),
-  })
-  .transform((data) => ({
-    hubSortCode: data['HubSortCode'],
-    freightSortFacilityCode: data['FreightSortFacilityCode'],
-  }));
+export const dropLocationSortCodeResponse: any = z.lazy(() => {
+  return z
+    .object({
+      HubSortCode: z.string().min(2).max(2).optional(),
+      FreightSortFacilityCode: z.string().min(3).max(3).optional(),
+    })
+    .transform((data) => ({
+      hubSortCode: data['HubSortCode'],
+      freightSortFacilityCode: data['FreightSortFacilityCode'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const dropLocationSortCodeRequest = z
-  .object({ hubSortCode: z.string().nullish(), freightSortFacilityCode: z.string().nullish() })
-  .transform((data) => ({
-    HubSortCode: data['hubSortCode'],
-    FreightSortFacilityCode: data['freightSortFacilityCode'],
-  }));
+export const dropLocationSortCodeRequest: any = z.lazy(() => {
+  return z
+    .object({ hubSortCode: z.string().nullish(), freightSortFacilityCode: z.string().nullish() })
+    .transform((data) => ({
+      HubSortCode: data['hubSortCode'],
+      FreightSortFacilityCode: data['freightSortFacilityCode'],
+    }));
+});

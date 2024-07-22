@@ -10,11 +10,13 @@ import {
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const accessPointSearchExcludeFromResult = z.object({
-  businessClassificationCode: z.array(z.string()).optional(),
-  businessName: z.string().min(1).max(15).optional(),
-  radius: z.string().min(1).max(3).optional(),
-  postalCodeList: excludeFromResultPostalCodeList.optional(),
+export const accessPointSearchExcludeFromResult: any = z.lazy(() => {
+  return z.object({
+    businessClassificationCode: z.array(z.string()).optional(),
+    businessName: z.string().min(1).max(15).optional(),
+    radius: z.string().min(1).max(3).optional(),
+    postalCodeList: excludeFromResultPostalCodeList.optional(),
+  });
 });
 
 /**
@@ -31,34 +33,38 @@ export type AccessPointSearchExcludeFromResult = z.infer<typeof accessPointSearc
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const accessPointSearchExcludeFromResultResponse = z
-  .object({
-    BusinessClassificationCode: z.array(z.string()).optional(),
-    BusinessName: z.string().min(1).max(15).optional(),
-    Radius: z.string().min(1).max(3).optional(),
-    PostalCodeList: excludeFromResultPostalCodeListResponse.optional(),
-  })
-  .transform((data) => ({
-    businessClassificationCode: data['BusinessClassificationCode'],
-    businessName: data['BusinessName'],
-    radius: data['Radius'],
-    postalCodeList: data['PostalCodeList'],
-  }));
+export const accessPointSearchExcludeFromResultResponse: any = z.lazy(() => {
+  return z
+    .object({
+      BusinessClassificationCode: z.array(z.string()).optional(),
+      BusinessName: z.string().min(1).max(15).optional(),
+      Radius: z.string().min(1).max(3).optional(),
+      PostalCodeList: excludeFromResultPostalCodeListResponse.optional(),
+    })
+    .transform((data) => ({
+      businessClassificationCode: data['BusinessClassificationCode'],
+      businessName: data['BusinessName'],
+      radius: data['Radius'],
+      postalCodeList: data['PostalCodeList'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const accessPointSearchExcludeFromResultRequest = z
-  .object({
-    businessClassificationCode: z.array(z.string()).nullish(),
-    businessName: z.string().nullish(),
-    radius: z.string().nullish(),
-    postalCodeList: excludeFromResultPostalCodeListRequest.nullish(),
-  })
-  .transform((data) => ({
-    BusinessClassificationCode: data['businessClassificationCode'],
-    BusinessName: data['businessName'],
-    Radius: data['radius'],
-    PostalCodeList: data['postalCodeList'],
-  }));
+export const accessPointSearchExcludeFromResultRequest: any = z.lazy(() => {
+  return z
+    .object({
+      businessClassificationCode: z.array(z.string()).nullish(),
+      businessName: z.string().nullish(),
+      radius: z.string().nullish(),
+      postalCodeList: excludeFromResultPostalCodeListRequest.nullish(),
+    })
+    .transform((data) => ({
+      BusinessClassificationCode: data['businessClassificationCode'],
+      BusinessName: data['businessName'],
+      Radius: data['radius'],
+      PostalCodeList: data['postalCodeList'],
+    }));
+});

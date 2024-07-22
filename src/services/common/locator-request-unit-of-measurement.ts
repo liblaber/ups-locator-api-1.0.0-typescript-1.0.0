@@ -5,8 +5,10 @@ import { z } from 'zod';
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const locatorRequestUnitOfMeasurement = z.object({
-  code: z.string(),
+export const locatorRequestUnitOfMeasurement: any = z.lazy(() => {
+  return z.object({
+    code: z.string(),
+  });
 });
 
 /**
@@ -24,18 +26,22 @@ export type LocatorRequestUnitOfMeasurement = z.infer<typeof locatorRequestUnitO
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const locatorRequestUnitOfMeasurementResponse = z
-  .object({
-    Code: z.string(),
-  })
-  .transform((data) => ({
-    code: data['Code'],
-  }));
+export const locatorRequestUnitOfMeasurementResponse: any = z.lazy(() => {
+  return z
+    .object({
+      Code: z.string(),
+    })
+    .transform((data) => ({
+      code: data['Code'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const locatorRequestUnitOfMeasurementRequest = z.object({ code: z.string().nullish() }).transform((data) => ({
-  Code: data['code'],
-}));
+export const locatorRequestUnitOfMeasurementRequest: any = z.lazy(() => {
+  return z.object({ code: z.string().nullish() }).transform((data) => ({
+    Code: data['code'],
+  }));
+});

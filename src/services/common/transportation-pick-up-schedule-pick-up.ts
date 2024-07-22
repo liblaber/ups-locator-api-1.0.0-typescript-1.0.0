@@ -10,9 +10,11 @@ import {
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const transportationPickUpSchedulePickUp = z.object({
-  dayOfWeek: z.string().min(1).max(1),
-  pickUpDetails: pickUpPickUpDetails,
+export const transportationPickUpSchedulePickUp: any = z.lazy(() => {
+  return z.object({
+    dayOfWeek: z.string().min(1).max(1),
+    pickUpDetails: pickUpPickUpDetails,
+  });
 });
 
 /**
@@ -35,23 +37,27 @@ export type TransportationPickUpSchedulePickUp = z.infer<typeof transportationPi
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const transportationPickUpSchedulePickUpResponse = z
-  .object({
-    DayOfWeek: z.string().min(1).max(1),
-    PickUpDetails: pickUpPickUpDetailsResponse,
-  })
-  .transform((data) => ({
-    dayOfWeek: data['DayOfWeek'],
-    pickUpDetails: data['PickUpDetails'],
-  }));
+export const transportationPickUpSchedulePickUpResponse: any = z.lazy(() => {
+  return z
+    .object({
+      DayOfWeek: z.string().min(1).max(1),
+      PickUpDetails: pickUpPickUpDetailsResponse,
+    })
+    .transform((data) => ({
+      dayOfWeek: data['DayOfWeek'],
+      pickUpDetails: data['PickUpDetails'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const transportationPickUpSchedulePickUpRequest = z
-  .object({ dayOfWeek: z.string().nullish(), pickUpDetails: pickUpPickUpDetailsRequest.nullish() })
-  .transform((data) => ({
-    DayOfWeek: data['dayOfWeek'],
-    PickUpDetails: data['pickUpDetails'],
-  }));
+export const transportationPickUpSchedulePickUpRequest: any = z.lazy(() => {
+  return z
+    .object({ dayOfWeek: z.string().nullish(), pickUpDetails: pickUpPickUpDetailsRequest.nullish() })
+    .transform((data) => ({
+      DayOfWeek: data['dayOfWeek'],
+      PickUpDetails: data['pickUpDetails'],
+    }));
+});

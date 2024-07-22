@@ -15,9 +15,11 @@ import {
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const accessPointInformationAvailability = z.object({
-  shippingAvailability: availabilityShippingAvailability.optional(),
-  dcrAvailability: availabilityDcrAvailability.optional(),
+export const accessPointInformationAvailability: any = z.lazy(() => {
+  return z.object({
+    shippingAvailability: availabilityShippingAvailability.optional(),
+    dcrAvailability: availabilityDcrAvailability.optional(),
+  });
 });
 
 /**
@@ -32,26 +34,30 @@ export type AccessPointInformationAvailability = z.infer<typeof accessPointInfor
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const accessPointInformationAvailabilityResponse = z
-  .object({
-    ShippingAvailability: availabilityShippingAvailabilityResponse.optional(),
-    DCRAvailability: availabilityDcrAvailabilityResponse.optional(),
-  })
-  .transform((data) => ({
-    shippingAvailability: data['ShippingAvailability'],
-    dcrAvailability: data['DCRAvailability'],
-  }));
+export const accessPointInformationAvailabilityResponse: any = z.lazy(() => {
+  return z
+    .object({
+      ShippingAvailability: availabilityShippingAvailabilityResponse.optional(),
+      DCRAvailability: availabilityDcrAvailabilityResponse.optional(),
+    })
+    .transform((data) => ({
+      shippingAvailability: data['ShippingAvailability'],
+      dcrAvailability: data['DCRAvailability'],
+    }));
+});
 
 /**
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const accessPointInformationAvailabilityRequest = z
-  .object({
-    shippingAvailability: availabilityShippingAvailabilityRequest.nullish(),
-    dcrAvailability: availabilityDcrAvailabilityRequest.nullish(),
-  })
-  .transform((data) => ({
-    ShippingAvailability: data['shippingAvailability'],
-    DCRAvailability: data['dcrAvailability'],
-  }));
+export const accessPointInformationAvailabilityRequest: any = z.lazy(() => {
+  return z
+    .object({
+      shippingAvailability: availabilityShippingAvailabilityRequest.nullish(),
+      dcrAvailability: availabilityDcrAvailabilityRequest.nullish(),
+    })
+    .transform((data) => ({
+      ShippingAvailability: data['shippingAvailability'],
+      DCRAvailability: data['dcrAvailability'],
+    }));
+});
